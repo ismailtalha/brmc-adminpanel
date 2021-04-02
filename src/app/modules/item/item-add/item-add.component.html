@@ -1,0 +1,275 @@
+<div class="header pb-5 pt-5 pt-lg-8 d-flex align-items-center">
+    <!-- Mask -->
+    <span class="mask bg-gradient-primary opacity-8"></span>
+  </div>
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-xl-12 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Items</h3>
+              </div>
+
+              <div class="col-4">
+                <!-- <div class="form-group">
+                  <label class="form-control-label" for="input-username">Currency Stock</label>
+                  <input class="form-control form-control-alternative" placeholder="Currency Stock" type="number" [disabled]="true" [ngModelOptions]="{standalone: true}" [(ngModel)]="currencyStock">
+                </div> -->
+                <!-- <div class="form-group stock">
+                  <label class="form-control-label" for="input-username">Currency Stock</label>
+                  <span class="stocktext">{{currencyStock}}</span>
+                
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+              <form [formGroup]="itemform">
+                <div class="pl-lg-4">
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">Category*</label>
+                            <!-- <select formControlName="productno" class="form-control form-control-alternative">
+                                <option [ngValue]="null" disabled>Select Category</option>
+                                <option *ngFor="let a of categories" [value]="a?.id">{{a?.productname}}</option>
+                            </select> -->
+                            <ng-select [items]="categories"
+                            (change)="onCategoryChange($event)"
+                                      bindLabel="productname"
+                                      bindValue="productname"
+                                      placeholder="Select Category"
+                                      formControlName="productname">
+                                      <ng-template ng-label-tmp let-item="item">
+                                        <b>{{item.productname}}<span><small><b>({{item.productno}})</b></small></span></b>
+                                      </ng-template>
+                                    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                      <b>{{item.productname}}<span><small><b>({{item.productno}})</b></small></span></b>
+                                  </ng-template>
+                            </ng-select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">Group*</label>
+                            <!-- <select formControlName="itemgroupno"  class="form-control form-control-alternative">
+                                <option [ngValue]="null" disabled>Select Group</option>
+                                <option *ngFor="let a of itemgroups" [value]="a?.id">{{a?.itemgroupname}}</option>
+                            </select> -->
+                            <ng-select [items]="itemgroups"
+                            (change)="onItemGroupChange($event)"
+                                      bindLabel="itemgroupname"
+                                      bindValue="itemgroupname"
+                                      placeholder="Select ItemGroup"
+                                      formControlName="itemgroupname">
+                                      <ng-template ng-label-tmp let-item="item">
+                                        <b>{{item.itemgroupname}}<span><small><b>({{item.itemgroupno}})</b></small></span></b>
+                                      </ng-template>
+                                    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                      <b>{{item.itemgroupname}}<span><small><b>({{item.itemgroupno}})</b></small></span></b>
+                                  </ng-template>
+                            </ng-select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">Brand*</label>
+                            <!-- <select formControlName="makeno" class="form-control form-control-alternative">
+                                <option [ngValue]="null" disabled>Select Brand</option>
+                                <option *ngFor="let a of brands" [value]="a?.id">{{a?.makename}}</option>
+                            </select> -->
+                            <ng-select [items]="brands"
+                            (change)="onBrandChange($event)"
+                                      bindLabel="makename"
+                                      bindValue="makename"
+                                      placeholder="Select Brand"
+                                      formControlName="makename">
+                                      <ng-template ng-label-tmp let-item="item">
+                                        <b>{{item.makename}}<span><small><b>({{item.makeno}})</b></small></span></b>
+                                      </ng-template>
+                                    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                      <b>{{item.makename}}<span><small><b>({{item.makeno}})</b></small></span></b>
+                                  </ng-template>
+                            </ng-select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Sale Price*</label>
+                            <input formControlName="saleprice" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Cost Price*</label>
+                            <input formControlName="costprice" class="form-control form-control-alternative"  type="number">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Name*</label>
+                            <input formControlName="itemname" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Barcode</label>
+                            <input formControlName="itembarcode" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Recorder Level</label>
+                            <input formControlName="reorderlevel" class="form-control form-control-alternative"  type="text">
+                        </div>
+                    </div> 
+                  
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Description</label>
+                            <input formControlName="itemdetails" class="form-control form-control-alternative" multiple  type="text">
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-username">Discount Percentage</label>
+                                <input formControlName="discountpercentage" class="form-control form-control-alternative"  type="text">
+                            </div>
+                        </div> 
+                        <div class="col-lg-2">
+                            <div class="form-group form-check">
+                                <input type="checkbox"  formControlName="isfeatured" id="isfeatured" class="form-check-input"  />
+                                <label for="isfeatured" class="form-check-label">Is Featured</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group form-check">
+                                <input type="checkbox"  formControlName="isnewarrival" id="isnewarrival" class="form-check-input"  />
+                                <label for="isnewarrival" class="form-check-label">New Arrival</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group form-check">
+                                <input type="checkbox"  formControlName="blockitem" id="blockitem" class="form-check-input"  />
+                                <label for="blockitem" class="form-check-label">Is Block</label>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+              </form>
+              <hr class="my-4" />
+              <form [formGroup]="unitdetail" >
+                <div class="pl-lg-4">
+
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Select Unit*</label>
+                            <ng-select [items]="units"
+                            (change)="onUnitChange($event)"
+                                      bindLabel="unitname"
+                                      bindValue="unitname"
+                                      placeholder="Select Unit"
+                                      formControlName="unitname">
+                                      <ng-template ng-label-tmp let-item="item">
+                                        <b>{{item.unitname}}</b>
+                                      </ng-template>
+                                    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                      <b>{{item.unitname}}</b>
+                                  </ng-template>
+                            </ng-select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">Equivalent*</label>
+                          <input  formControlName="equivalent" class="form-control form-control-alternative"  type="number">
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">Sale Price*</label>
+                          <input  formControlName="dsaleprice" class="form-control form-control-alternative"  type="number">
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">Cost Price*</label>
+                          <input formControlName="dcostprice" class="form-control form-control-alternative"  type="number">
+                        </div>
+                      </div>
+
+                   
+
+                      <div class="col-lg-11">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">Description</label>
+                          <input formControlName="ltxt" class="form-control form-control-alternative" placeholder="Description" type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-1" style="margin-top: 32px; padding-left: 0px;">
+                        <div class="form-group">
+                          <button [disabled]="!unitdetail.valid" type="button" (click)="add()" class="btn btn-primary btncustom">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+              </form>
+
+              <div class="row">
+                <div class="col">
+                  <div class="card shadow">
+                    <div class="card-header border-0">
+                      <h3 class="mb-0">Unit Detail</h3>
+                    </div>
+                    <div class="table-responsive">
+                      <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Equivalent</th>
+                            <th scope="col">Sale Price</th>
+                            <th scope="col">Cost Price</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let de of unitdetails">
+                            <td>{{de.factorunitname}}</td>
+                            <td>{{de.equivalent}}</td>
+                            <td>{{de.dsaleprice}}</td>
+                            <td>{{de.dcostprice}}</td>
+                            <td>{{de.ltxt}}</td>
+
+
+                              <td style="text-align: center; cursor: pointer;">
+                                  <i class="pi pi-pencil pr-1" (click)="onEdit(de)"></i>
+                                  <i class="pi pi-trash pl-1" (click)="onDelete(de)"></i>
+                              </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="float: right;" >
+                <div class="form-group">
+                  <button [disabled]="!itemform.valid || unitdetails.length == 0" type="button" (click)="onSave()" class="btn btn-primary btncustom">Save</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

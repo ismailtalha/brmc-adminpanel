@@ -1,0 +1,53 @@
+<div class="header bg-gradient-primary py-7 py-lg-8">
+  <div class="container"> 
+    <div class="header-body text-center mb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <a routerLink="dashboard">
+            <img width="200px" height="100px" src="./assets/img/brand/red.png" class="navbar-brand-img" alt="...">
+          </a>
+          <hr>
+          <h1 class="text-white">Users Permissions</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-12 col-md-12">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-body px-lg-12 py-lg-12">
+          <div class="" style="height: 68vh; overflow: auto;"> 
+            <table class="table-grey-border table group-level-access_table table-responsive tableFixHead">
+            <thead>
+                <tr>
+                  <th scope="col">Users Names</th>
+                  <th scope="col" *ngFor="let screen of screens">{{screen}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr scope="col" *ngFor="let user of users">
+                  <td>{{user.name}}</td>
+                  <td [ngClass]="users[i].permission == 0 ? 'changevalue' : ''" scope="col" *ngFor="let screen of screens; index as i">
+                    <select [(ngModel)]="users[i].permission">
+                      <option value="0">None</option>
+                      <option value="1">Allow</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+          
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

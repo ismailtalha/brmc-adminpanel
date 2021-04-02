@@ -1,0 +1,137 @@
+<div class="header pb-5 pt-5 pt-lg-8 d-flex align-items-center">
+    <!-- Mask -->
+    <span class="mask bg-gradient-primary opacity-8"></span>
+  </div>
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-xl-12 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Order</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+              <form [formGroup]="orderform">
+                <div class="pl-lg-4">
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Ortder #</label>
+                            <input formControlName ="docno" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Delivery Address</label>
+                            <input formControlName ="deliveryaddress" class="form-control form-control-alternative"  type="number">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Customer Name</label>
+                            <input formControlName ="custname" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Contact Person Name</label>
+                            <input formControlName ="contactperson" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Contact Person Number</label>
+                            <input formControlName ="contactpersoncellno" class="form-control form-control-alternative"  type="number">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Payment Mode</label>
+                            <input formControlName ="paymentmethode" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Order Total</label>
+                            <input formControlName ="totalamount" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Order Total Discount</label>
+                            <input formControlName ="totaldiscount" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Order Total GST</label>
+                            <input formControlName ="totalgst" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="form-control-label" >Description</label>
+                            <input formControlName ="description" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>
+
+                    </div>
+                </div>
+              </form>
+              <hr class="my-4" />
+             
+              <form [formGroup]="orderdetails" >
+              <div class="row">
+                <div class="col">
+                  <div class="card shadow">
+                    <div class="card-header border-0">
+                      <h3 class="mb-0"> Items</h3>
+                    </div>
+                    <div class="table-responsive">
+                      <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Make Name</th>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Group Name</th>
+                            <th scope="col">Unit Name</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let de of orderdetails">
+                            <td>{{de.itemname}}</td>
+                            <td>{{de.price}}</td>
+                            <td>{{de.quantity}}</td>
+                            <td>{{de.amount}}</td>
+                            <td>{{de.ltxt}}</td>
+                            <td>{{de.makename}}</td>
+                            <td>{{de.productname}}</td>
+                            <td>{{de.itemgroupname}}</td>
+                            <td>{{de.unitname}}</td>
+
+
+                             
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

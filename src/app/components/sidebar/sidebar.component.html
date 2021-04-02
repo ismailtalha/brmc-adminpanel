@@ -1,0 +1,180 @@
+<nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-white" id="sidenav-main">
+  <div class="container-fluid">
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+       aria-controls="sidenav-collapse-main">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Brand -->
+    <a href="javascript:void(0)">
+      <img src="../../../assets/img/logo.jpg" class="navbar-brand-img" alt="...">
+    </a>
+    <!-- User -->
+    <ul class="nav align-items-center d-md-none">
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a class="nav-link" role="button" ngbDropdownToggle>
+          <div class="media align-items-center">
+            <span class="avatar avatar-sm rounded-circle">
+              <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.png">
+            </span>
+          </div>
+        </a>
+        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+          <a routerLink="/auth/userPermission" class="dropdown-item">
+            <i class="ni ni-settings"></i>
+            <span>User Permissions</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="javascript:void(0)" (click)="logout()" class="dropdown-item">
+            <i class="ni ni-user-run"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+      <!-- Collapse header -->
+      <div class="navbar-collapse-header d-md-none">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+            <a href="javascript:void(0)">
+              <img src="../../../assets/img/logo.jpg">
+            </a>
+          </div>
+          <div class="col-6 collapse-close">
+            <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a routerLink="/dashboard" class="nav-link">
+            <i class="ni ni-tv-2 text-primary"></i>
+            Dashboard
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/users" class="nav-link">
+            <i class="ni fas fa-users text-primary"></i>
+            Users
+          </a>
+          <!-- <a class="nav-link collapsible">
+            <i class="ni fas fa-users text-primary"></i>Users</a>
+          <div class="content">
+            <a routerLink="/users" class="nav-link">Users List</a>
+            <a routerLink="/users/addNewUser" class="nav-link">Add Users</a>
+          </div> -->
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/customers" class="nav-link">
+            <i class="ni fas fa-users text-primary"></i>
+            Customers
+          </a>
+          <!-- <a class="nav-link collapsible">
+            <i class="ni ni-money-coins text-primary"></i>Customers</a>
+          <div class="content">
+            <a routerLink="/currencies" class="nav-link">Customers List</a>
+            <a routerLink="/currencies/addNewCurrency" class="nav-link">Add Customers</a>
+          </div> -->
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/brand" class="nav-link">
+            <i class="ni ni-collection text-primary"></i>
+            Brands
+          </a>
+          <!-- <a class="nav-link collapsible">
+            <i class="ni ni-single-02 text-primary"></i>Brands</a>
+          <div class="content">
+            <a routerLink="/brand" class="nav-link">Brands List</a>
+            <a routerLink="/brand/brand-add" class="nav-link">Add Brands</a>
+          </div> -->
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/productcategory" class="nav-link">
+            <i class="ni ni-collection text-primary"></i>
+            Category
+          </a>
+          <!-- <a class="nav-link collapsible">
+            <i class="ni ni-money-coins text-primary"></i>Category</a>
+          <div class="content">
+            <a routerLink="/productcategory" class="nav-link">Category List</a>
+            <a routerLink="/productcategory/add" class="nav-link">Add Category</a>
+          </div> -->
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/itemgroup" class="nav-link">
+            <i class="ni ni-single-02 text-primary"></i>
+            ItemGroup
+          </a>
+          <!-- <a class="nav-link collapsible">
+            <i class="ni ni-single-copy-04 text-primary"></i>ItemGroup</a>
+          <div class="content"> 
+            <a routerLink="/itemgroup" class="nav-link">ItemGroup List</a>
+            <a routerLink="/itemgroup/add" class="nav-link">Add ItemGroup</a>
+          </div> -->
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/order" class="nav-link">
+            <i class="ni ni-basket text-primary"></i>
+            Orders
+          </a>
+          <!-- <a class="nav-link collapsible">
+            <i class="ni ni-single-02 text-primary"></i>Order</a>
+          <div class="content">
+            <a routerLink="/accounts/account-type" class="nav-link">Order List</a>
+            <a routerLink="/accounts/addAccount-type" class="nav-link">Add Order</a>
+          </div> -->
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/item" class="nav-link">
+            <i class="ni nav-item text-primary"></i>
+            Items
+          </a>
+          <!-- <a class="nav-link collapsible">
+            <i class="fas fa-chart-pie text-primary"></i>Items</a>
+          <div class="content">
+            <a routerLink="/item" class="nav-link">Items List</a>
+            <a routerLink="/item/add" class="nav-link">Add Item</a>
+          </div> -->
+        </li>
+        <li class="nav-item">
+          <a routerLink="/company" class="nav-link">
+            <i class="ni ni-paper-diploma text-primary"></i>
+            Company
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link collapsible">
+            <i class="ni ni-credit-card text-primary"></i>Purchase</a>
+          <div class="content">
+            <a routerLink="/purchase" class="nav-link">Purchase List</a>
+            <a routerLink="/purchase/addNewPurchase" class="nav-link">Add Purchase</a>
+          </div>
+        </li> -->
+
+        <!-- <li class="nav-item">
+          <a class="nav-link collapsible">
+            <i class="ni ni-collection text-primary"></i>Reports</a>
+          <div class="content">
+            <a routerLink="/reports" class="nav-link">Stock Report</a>
+            <a routerLink="/reports/journal-report" class="nav-link">Journal Report</a>
+            <a routerLink="/reports/ledger-report" class="nav-link">Ledger Report</a>
+            <a routerLink="/reports/currency-report" class="nav-link">Currency Report</a>
+          </div>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
