@@ -5,6 +5,7 @@ import { ProductcategoryListComponent } from './productcategory-list/productcate
 import { ProductCategoryRoutingModule } from './productcategory-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { TableModule } from 'primeng/table';
     CommonModule,
     ProductCategoryRoutingModule,
     ReactiveFormsModule,
-    TableModule
+    TableModule,
+    SharedModule
   ]
 })
 export class ProductcategoryModule { }

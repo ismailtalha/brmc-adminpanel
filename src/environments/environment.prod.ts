@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'https://testing.accounto-soft.com'
+  url: 'http://backend.smokesinc.com.192-185-10-74.hgws14.hgwin.temp.domains/brmsapi/'
 };

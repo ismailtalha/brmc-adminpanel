@@ -17,39 +17,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive table align-items-center table-flush">
-                        <p-table #users [columns]="Records.cols" [value]="Records.data" [paginator]="false"
-                            [rows]="10" sortMode="multiple" [showCurrentPageReport]="false" editMode="row"
-                            class="gridstyle">
-
-                            <ng-template pTemplate="header" let-columns>
-                                <tr>
-
-                                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                                        {{col.header}}
-                                        <!-- <p-sortIcon [field]="col.field"></p-sortIcon> -->
-                                    </th>
-                                    <th>Action</th>
-                                </tr>
-                            </ng-template>
-
-                            <ng-template pTemplate="body" let-rowData let-columns="columns" let-row="rowData">
-
-                                <tr>
-                                    <td style="text-align:center" *ngFor="let col of columns">
-                                        <span> {{rowData[col.field]}}</span>
-                                    </td>
-
-                                    <td style="text-align: center; cursor: pointer;">
-                                        <i class="pi pi-pencil pr-5" (click)="onEdit(rowData)"></i>
-                                        <i class="pi pi-trash pl-5" (click)="onDelete(rowData)"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-
-                                </tr>
-
-                            </ng-template>
-                        </p-table>
+                        <app-ptable [Records]="Records" (edit)="onEdit($event)"></app-ptable>
                     </div>
                 </div>
             </div>

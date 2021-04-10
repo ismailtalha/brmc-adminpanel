@@ -19,21 +19,26 @@ export class BrandListComponent implements OnInit {
       { field: 'makeno', header: 'Brand No' },
       { field: 'makename', header: 'Brand Name' },
       { field: 'discountpercentage', header: 'Discount %' }
-      
+
     ],
     first: 0,
     rows: 60,
     approvedTotalRows: 0,
     columns: [],
+    globalFilter:true,
+    IsEdit:true,
+    IsDelete:true,
+    IsDetail:false,
+    screen:'brand'
   };
   ngOnInit(): void {
     this.loader.start();
-    this.dataService.getBrands().subscribe((res: any) =>{
-      
-        this.Records.data = [...res];
-        this.loader.stop();
-      
-    },(err)=>{
+    this.dataService.getBrands().subscribe((res: any) => {
+
+      this.Records.data = [...res];
+      this.loader.stop();
+
+    }, (err) => {
       console.log(err);
       this.loader.stop();
     });
@@ -43,8 +48,8 @@ export class BrandListComponent implements OnInit {
     this.router.navigate(['/brand/edit', data?.makeno]);
   }
 
- 
 
-  
+
+
 
 }

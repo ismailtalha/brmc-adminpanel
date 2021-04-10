@@ -5,6 +5,7 @@ import { OrderRoutingModule } from './order-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
     CommonModule,
     OrderRoutingModule,
     ReactiveFormsModule,
-    TableModule
+    TableModule,
+    SharedModule
   ]
 })
 export class OrderModule { }

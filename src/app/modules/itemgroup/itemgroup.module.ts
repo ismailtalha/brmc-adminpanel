@@ -5,6 +5,7 @@ import { ItemgroupListComponent } from './itemgroup-list/itemgroup-list.componen
 import { ItemGroupRoutingModule } from './itemgroup-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { TableModule } from 'primeng/table';
     CommonModule,
     ItemGroupRoutingModule,
     ReactiveFormsModule,
-    TableModule
+    TableModule,
+    SharedModule
   ]
 })
 export class ItemgroupModule { }

@@ -31,7 +31,7 @@ export class DataService {
   }
 
   createUser(data) {
-    return this.http.post(url + '/user/create', data);
+    return this.http.post(url + '/cobuserhdr/post', data);
   }
 
   updateUser(id, data) {
@@ -327,6 +327,10 @@ export class DataService {
   getOrderById(id)
   {
     return this.http.get(url + `/sldsaleorderhdr/get?no=${id}`);
+  }
+  updateOrder(data)
+  {
+    return this.http.post(url + '/sldsaleorderhdr/post',data);
   }
 
 }

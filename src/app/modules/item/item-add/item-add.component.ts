@@ -15,6 +15,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ItemAddComponent implements OnInit {
   unitdetails: any=[];
   edit: any;
+  url: string | ArrayBuffer;
 
   constructor(private dataService: DataService,
     private loader: NgxUiLoaderService,
@@ -34,6 +35,7 @@ units:any=[];
         let data = res;
         
         this.itemform.patchValue(data);
+        this.url = data.itemimagelogo;
         this.unitdetail.patchValue(data.itemunitsdetails)
         this.unitdetails = data.itemunitsdetails;
         this.loader.stop();
@@ -63,7 +65,8 @@ units:any=[];
     blockitem:new FormControl(null),
     itemdetails:new FormControl(null),
     itemunitsdetails:new FormControl(null),
-    itemno: new FormControl(null)
+    itemno: new FormControl(null),
+    itemimagelogo:new FormControl(null)
   
   });
   unitdetail = new FormGroup({
@@ -188,5 +191,18 @@ units:any=[];
     this.itemform.patchValue({
       makeno : value?.makeno
     })
+  }
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        debugger
+        this.url = event.target.result;
+        this.itemform.patchValue({itemimagelogo : this.url.toString().replace('data:image/jpeg;base64,',"")})
+      }
+    }
   }
 }

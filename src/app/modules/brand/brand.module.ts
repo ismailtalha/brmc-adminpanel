@@ -5,6 +5,7 @@ import { BrandAddComponent } from './brand-add/brand-add.component';
 import { BrandRoutingModule } from './brand-routing.module';
 import { TableModule } from 'primeng/table';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     BrandRoutingModule,
     TableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class BrandModule { }

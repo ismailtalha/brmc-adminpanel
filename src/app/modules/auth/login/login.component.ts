@@ -23,25 +23,26 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login() {
-    this.router.navigate(['dashboard']);
-    // this.loader.start();
-    // this.dataService.getsinglecustomer(this.form.value).subscribe((res: any) =>{
-    //   if(res?.code === 200) {
-    //    // this.cookies.set('token', res?.token);
-    //     localStorage.setItem('userName', res?.data[0].Username);
-    //     localStorage.setItem('id', res?.data[0].id);
-    //     localStorage.setItem('userAccountId', res?.data[0].AccountId);
-    //     this.router.navigate(['dashboard']);
-    //     this.loader.stop();
-    //     this.toastr.success('Login Successfully', 'Success');
-    //   } else {
-    //     this.toastr.error("Wrong User", "Error");
-    //     this.loader.stop();
-    //   }
-    // }, (err) =>{
-    //     this.toastr.error("Wrong User", "Error");
-    //     this.loader.stop();
-    // }); 
+    
+    this.loader.start();
+    debugger
+    this.dataService.getsinglecustomer(this.form.value.Name).subscribe((res: any) =>{
+      if(res?.password === this.form.value.Password) {
+       // this.cookies.set('token', res?.token);
+        localStorage.setItem('userName', res?.userno);
+        localStorage.setItem('id', res?.id);
+        localStorage.setItem('userAccountId', res?.AccountId);
+        this.router.navigate(['dashboard']);
+        this.loader.stop();
+        this.toastr.success('Login Successfully', 'Success');
+      } else {
+        this.toastr.error("Wrong User", "Error");
+        this.loader.stop();
+      }
+    }, (err) =>{
+        this.toastr.error("Wrong User", "Error");
+        this.loader.stop();
+    }); 
   }
 
 }

@@ -25,6 +25,11 @@ export class ItemgroupListComponent implements OnInit {
     rows: 60,
     approvedTotalRows: 0,
     columns: [],
+    globalFilter:true,
+    IsEdit:true,
+    IsDelete:true,
+    IsDetail:false,
+    screen:'itemgroup'
   };
   ngOnInit(): void {
     this.loader.start();

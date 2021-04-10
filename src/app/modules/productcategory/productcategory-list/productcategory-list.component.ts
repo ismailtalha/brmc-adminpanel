@@ -25,6 +25,11 @@ export class ProductcategoryListComponent implements OnInit {
     rows: 60,
     approvedTotalRows: 0,
     columns: [],
+    globalFilter:true,
+    IsEdit:true,
+    IsDelete:true,
+    IsDetail:false,
+    screen:'category'
   };
   ngOnInit(): void {
     this.loader.start();

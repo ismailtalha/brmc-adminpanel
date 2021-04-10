@@ -75,6 +75,7 @@ export class CompanyInfoComponent implements OnInit {
   {
     if(this.company.valid) {
       this.loader.start();
+      this.company.value.logo = this.company.value.logo.replace('data:image/jpeg;base64,',"");
         this.dataService.UpdateCompany(this.company.value).subscribe((res)=>{
           this.loader.stop();
           this.toastr.success(' Company Updated Successfully');

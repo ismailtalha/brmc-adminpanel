@@ -17,65 +17,7 @@
           </div>
           <div class="card-body">
             <div class="table-responsive table align-items-center table-flush">
-            <p-table #users [columns]="userRecords.cols" [value]="userRecords.data" [paginator]="false" [rows]="10" sortMode="multiple"
-            [showCurrentPageReport]="false" editMode="row" class="gridstyle">
-
-               <ng-template pTemplate="header" let-columns>
-                   <tr>
-
-                       <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                           {{col.header}}
-                           <!-- <p-sortIcon [field]="col.field"></p-sortIcon> -->
-                       </th>
-                       <th>Action</th>
-                   </tr>
-                   <!-- <tr>
-                       <th *ngFor="let col of columns" [ngSwitch]="col.field">
-
-                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
-                               *ngSwitchCase="'CreatedBy'" pInputText type="text"
-                               (input)="users.filter($event.target.value, col.field, 'contains')">
-
-                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
-                               *ngSwitchCase="'Name'" pInputText type="text"
-                               (input)="users.filter($event.target.value, col.field, 'contains')">
-
-                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
-                               *ngSwitchCase="'Email'" pInputText type="text"
-                               (input)="users.filter($event.target.value, col.field, 'contains')">
-
-                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
-                               *ngSwitchCase="'Type'" pInputText type="text"
-                               (input)="users.filter($event.target.value, col.field, 'contains')">
-
-                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget" *ngSwitchCase="'Password'" pInputText type="text"
-                               (input)="users.filter($event.target.value, col.field, 'contains')">
-                       </th>
-                   </tr> -->
-               </ng-template>
-
-               <ng-template pTemplate="body" let-rowData let-columns="columns" let-row="rowData">
-
-                   <tr>
-                       <td style="text-align:center" *ngFor="let col of columns">
-                           <span> {{rowData[col.field]}}</span>
-                       </td>
-
-                       <td style="text-align: center; cursor: pointer;">
-                        <i class="pi pi-pencil pr-5" (click)="onEdit(rowData)"></i>
-                        <i class="pi pi-trash pl-5" (click)="onDelete(rowData)"></i>
-                       </td>
-                   </tr>
-                   <tr>
-                   
-                </tr>
-
-               </ng-template>
-
-               <!-- <ng-template pTemplate="paginatorleft" let-state>
-                   Showing {{state.first + 1}}to {{state.first +  state.rows}} of {{userRecords.approvedTotalRows}} entries
-               </ng-template> -->
-            </p-table>
+            <app-ptable [Records]="userRecords" (edit)="onEdit($event)" ></app-ptable>
             </div>
           </div>
         </div>

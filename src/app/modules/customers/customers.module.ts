@@ -6,6 +6,7 @@ import { CutomerComponent } from './cutomer/cutomer.component';
 import { AddNewCustomerComponent } from './add-new-customer/add-new-customer.component';
 import {TableModule} from 'primeng/table';
 import {ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -15,7 +16,8 @@ import {ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     CustomersRoutingModule,
     TableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class CustomersModule { }

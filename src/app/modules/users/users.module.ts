@@ -6,6 +6,7 @@ import { UserComponent } from './user/user.component';
 import {TableModule} from 'primeng/table';
 import { NewUserComponent } from './new-user/new-user.component';
 import {ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     UsersRoutingModule,
     TableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class UsersModule { }

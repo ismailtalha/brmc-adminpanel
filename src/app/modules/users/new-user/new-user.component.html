@@ -21,41 +21,33 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="input-username">Name*</label>
-                          <input formControlName="Name" type="text" id="input-username" class="form-control form-control-alternative" placeholder="name">
+                          <input formControlName="username" type="text" id="input-username" class="form-control form-control-alternative" placeholder="name">
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-email">Email address*</label>
-                          <input formControlName="Email" type="email" id="input-email" class="form-control form-control-alternative" placeholder="email">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-first-name">Password*</label>
-                          <input formControlName="Password" type="password" id="input-first-name" class="form-control form-control-alternative" placeholder="First name">
+                          <label class="form-control-label" for="input-username">User Id*</label>
+                          <input formControlName="userno" type="text" id="input-username" class="form-control form-control-alternative">
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-last-name">Phone Number</label>
-                          <input formControlName="Phone" type="number" id="input-last-name" class="form-control form-control-alternative" placeholder="Phone Number">
+                          <label class="form-control-label" for="input-email">Passsword*</label>
+                          <input formControlName="password" type="text" id="input-email" class="form-control form-control-alternative">
                         </div>
                       </div>
-                    </div>
-                    <div class="row">
+                   
+                    
                         <div class="col-lg-6">
                           <div class="form-group">
                             <label class="form-control-label" for="input-first-name">User Type*</label>
-                            <select formControlName="Type" class="form-control form-control-alternative">
-                                <option value="normal">Normal</option>
-                                <option value="admin">Admin</option>
+                            <select formControlName="usertype" class="form-control form-control-alternative">
+                              <option value="01">Admin</option>
+                                <option value="02" selected>Normal</option>
                             </select>
                           </div>
                         </div>
-                    </div>
+                      </div>
                     <div class="row" style="float: right;">
                           <div class="form-group">
                             <a routerLink="/users" class="btn btn-secondary btn-md">Back</a>

@@ -1,0 +1,84 @@
+<p-table #abc [columns]="Records.cols" [value]="Records.data" [paginator]="true" [rows]="10" sortMode="multiple"
+    [showCurrentPageReport]="false" filter=true editMode="row" class="gridstyle">
+    <ng-template pTemplate="caption" *ngIf="Records.globalFilter">
+        <div style="text-align: right">
+            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter"
+                (input)="abc.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <!-- <p-sortIcon [field]="col.field"></p-sortIcon> -->
+            </th>
+            <th>Action</th>
+            <!-- </tr>
+                 
+                  <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input *ngSwitchCase="col.field" pInputText type="text"
+                        (input)="users.filter($event.target.value, col.field, 'contains')" />
+                    </th>
+                  </tr> -->
+            <!-- <tr>
+                       <th *ngFor="let col of columns" [ngSwitch]="col.field">
+
+                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
+                               *ngSwitchCase="'CreatedBy'" pInputText type="text"
+                               (input)="users.filter($event.target.value, col.field, 'contains')">
+
+                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
+                               *ngSwitchCase="'Name'" pInputText type="text"
+                               (input)="users.filter($event.target.value, col.field, 'contains')">
+
+                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
+                               *ngSwitchCase="'Email'" pInputText type="text"
+                               (input)="users.filter($event.target.value, col.field, 'contains')">
+
+                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
+                               *ngSwitchCase="'Type'" pInputText type="text"
+                               (input)="users.filter($event.target.value, col.field, 'contains')">
+
+                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget" *ngSwitchCase="'Password'" pInputText type="text"
+                               (input)="users.filter($event.target.value, col.field, 'contains')">
+                       </th>
+                   </tr> -->
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-row="rowData">
+
+        <tr>
+            <td style="text-align:center" *ngFor="let col of columns">
+                <span> {{rowData[col.field]}}</span>
+            </td>
+            <td *ngIf="Records.screen == 'order'">
+                <span>
+                    <select [(ngModel)]="rowData.orderstatusno" name="{{rowData['docno']}}" (change)="onChange(rowData)">
+
+                        <option *ngFor="let status of allstatus" value="{{status.orderstatusno}}" name="status.orderstatusno" >
+                       {{status.value}}
+                        </option>
+                       
+                    </select>
+                </span>
+            </td>
+
+            <td style="text-align: center; cursor: pointer;">
+                <i class="pi pi-pencil pr-1" *ngIf="Records.IsEdit" (click)="onEdit(rowData)"></i>
+                <i class="pi pi-trash pl-1" *ngIf="Records.IsDelete" (click)="onDelete(rowData)"></i>
+                <i class="pi pi-list pl-1" *ngIf="Records.IsDetail" (click)="onDetail(rowData)"></i>
+            </td>
+        </tr>
+        <tr>
+
+        </tr>
+
+    </ng-template>
+
+    <!-- <ng-template pTemplate="paginatorleft" let-state>
+                   Showing {{state.first + 1}}to {{state.first +  state.rows}} of {{userRecords.approvedTotalRows}} entries
+               </ng-template> -->
+</p-table>

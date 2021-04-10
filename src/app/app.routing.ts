@@ -58,30 +58,12 @@ const routes: Routes =[
         path: 'users',
         loadChildren: './modules/users/users.module#UsersModule', canActivate:[AuthGuardService]
       },
-      {
-        path: 'supplier',
-        loadChildren: './modules/supplier/supplier.module#SupplierModule', canActivate:[AuthGuardService]
-      },
-      {
-        path: 'reports',
-        loadChildren: './modules/reports/reports.module#ReportsModule', canActivate:[AuthGuardService]
-      },
-      {
-        path: 'purchase',
-        loadChildren: './modules/purchase/purchase.module#PurchaseModule', canActivate:[AuthGuardService]
-      },
+     
       {
         path: 'customers',
         loadChildren: './modules/customers/customers.module#CustomersModule', canActivate:[AuthGuardService]
       },
-      {
-        path: 'currencies',
-        loadChildren: './modules/currencies/currencies.module#CurrenciesModule', canActivate:[AuthGuardService]
-      },
-      {
-        path: 'payment',
-        loadChildren: './modules/payment/payment.module#PaymentModule', canActivate:[AuthGuardService]
-      }
+     
     ]
   },
   {

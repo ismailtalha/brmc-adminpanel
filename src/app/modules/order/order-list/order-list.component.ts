@@ -30,12 +30,17 @@ export class OrderListComponent implements OnInit {
       rows: 60,
       approvedTotalRows: 0,
       columns: [],
+      IsEdit:false,
+      IsDelete:false,
+      IsDetail:true,
+      screen:'order'
     };
   ngOnInit(): void {
     this.loader.start();
     this.dataService.getOrders().subscribe((res: any) =>{
       
         this.Records.data = [...res];
+        
         this.loader.stop();
       
     },(err)=>{

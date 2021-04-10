@@ -25,6 +25,11 @@ export class CutomerComponent extends DboperationsComponent implements OnInit {
     rows: 60,
     approvedTotalRows: 0,
     columns: [],
+    globalFilter:true,
+    IsEdit:true,
+    IsDelete:true,
+    IsDetail:false,
+    screen:'customer'
   };
   constructor(public dataService: DataService,
     public loader: NgxUiLoaderService,
@@ -61,8 +66,9 @@ export class CutomerComponent extends DboperationsComponent implements OnInit {
   }
 
   onEdit(data) {
+    debugger
     console.log(data);
-    this.router.navigate(['/customers/edit-customer', data?.id]);
+    this.router.navigate(['/customers/edit-customer', data?.custno]);
   }
 
 }

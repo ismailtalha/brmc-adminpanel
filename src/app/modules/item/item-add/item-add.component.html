@@ -28,7 +28,22 @@
           <div class="card-body">
               <form [formGroup]="itemform">
                 <div class="pl-lg-4">
-
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group" style="text-align: -webkit-center;">
+                        <label class="hoverable" for="fileInput">
+                          <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" class="text" > 
+                          <div class="hover-text">Item Image</div>
+                          <div class="background"></div>
+                        </label>
+                        <br/>
+                        <input id="fileInput" type='file' (change)="onSelectFile($event)">
+                        <!-- //<button ngIf="url" (click)="delete()" >delete</button> -->
+                        <!-- <img [src]="imageUrl" >
+                        <input  type="file"  id="avatar" class="form-control form-control-alternative" > -->
+                      </div>
+                    </div>
+                  </div>
                     <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group">

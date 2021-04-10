@@ -17,7 +17,7 @@
           </div>
           <div class="card-body">
             <div class="table-responsive table align-items-center table-flush">
-            <p-table #customer [columns]="Record.cols" [value]="Record.data" [paginator]="true" [rows]="10" sortMode="multiple"
+            <!-- <p-table #customer [columns]="Record.cols" [value]="Record.data" [paginator]="true" [rows]="10" sortMode="multiple"
             [showCurrentPageReport]="false" editMode="row">
 
                <ng-template pTemplate="header" let-columns>
@@ -25,31 +25,10 @@
    
                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
                            {{col.header}}
-                           <!-- <p-sortIcon [field]="col.field"></p-sortIcon> -->
                        </th>
                        <th>Action</th>
                    </tr>
-                   <!-- <tr>
-                       <th *ngFor="let col of columns" [ngSwitch]="col.field">
-
-                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
-                               *ngSwitchCase="'Name'" pInputText type="text"
-                               (input)="customer.filter($event.target.value, col.field, 'contains')">
-
-                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
-                               *ngSwitchCase="'OpeningBalance'" pInputText type="text"
-                               (input)="customer.filter($event.target.value, col.field, 'contains')">
-
-                           <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
-                               *ngSwitchCase="'Phone'" pInputText type="text"
-                               (input)="customer.filter($event.target.value, col.field, 'contains')">
-
-                          <input class="filter-width ui-column-filter ui-inputtext ui-corner-all ui-state-default ui-widget"
-                               *ngSwitchCase="'OpeningBalanceType'" pInputText type="text"
-                               (input)="customer.filter($event.target.value, col.field, 'contains')">
-
-                       </th>
-                   </tr> -->
+                
                </ng-template>
 
                <ng-template pTemplate="body" let-rowData let-columns="columns" let-row="rowData">
@@ -65,11 +44,9 @@
                    </tr>
                </ng-template>
    
-               <!-- <ng-template pTemplate="paginatorleft" let-state>
-                   Showing {{state.first + 1}}to {{state.first +  state.rows}} of {{Record.approvedTotalRows}} entries
-               </ng-template> -->
-            </p-table>
-            </div>
+            </p-table> -->
+            <app-ptable [Records]="Record" (edit)="onEdit($event)"></app-ptable>  
+          </div>
           </div>
         </div>
       </div>

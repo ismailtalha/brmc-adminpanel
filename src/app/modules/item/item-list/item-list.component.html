@@ -17,8 +17,14 @@
           </div>
           <div class="card-body">
             <div class="table-responsive table align-items-center table-flush">
-            <p-table #account [columns]="Record.cols" [value]="Record.data" [paginator]="true" [rows]="10" dataKey="itemno" sortMode="multiple" [paginator]="false"
+            <p-table #item [columns]="Record.cols" [value]="Record.data" [paginator]="true" [rows]="10" dataKey="itemno" sortMode="multiple" [paginator]="false"
             [showCurrentPageReport]="false" editMode="row">
+            <ng-template pTemplate="caption" >
+              <div style="text-align: right">        
+                  <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                  <input type="text" pInputText size="50" placeholder="Global Filter" (input)="item.filterGlobal($event.target.value, 'contains')" style="width:auto">
+              </div>
+          </ng-template>
                <ng-template pTemplate="header" let-columns>
                    <tr>
                       <th style="width: 3rem">
@@ -46,12 +52,12 @@
                <ng-template pTemplate="body" let-rowData let-columns="columns" let-row="rowData" let-expanded="expanded" >
 
                    <tr>
-                      <td>
+                      <!-- <td>
                           <a href="javascript:void(0)" [pRowToggler]="rowData">
                               <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
                               </i>
                           </a>
-                      </td>
+                      </td> -->
                        <td style="text-align:center" *ngFor="let col of columns">
                            <span *ngIf="col.field == 'Date'"> 
                              {{rowData[col.field] | date:'dd-MM-yyyy'}}
@@ -126,9 +132,7 @@
                 </tr>
             </ng-template>
 
-             <ng-template pTemplate="paginatorRight" let-state>
-                   Showing {{state.first + 1}}to {{state.first +  state.rows}} of {{Record.approvedTotalRows}} entries
-               </ng-template>
+            
             </p-table>
             </div>
           </div>

@@ -11,6 +11,12 @@ import { DboperationsComponent } from 'src/app/dboperations/dboperations.compone
   styleUrls: ['./user.component.css']
 })
 export class UserComponent  {
+  userdata:any;
+  val:any;
+  deleteUser()
+  {
+
+  }
   userRecords: any = {
     data: [],
     cols: [
@@ -25,6 +31,11 @@ export class UserComponent  {
     rows: 60,
     approvedTotalRows: 0,
     columns: [],
+    globalFilter:true,
+    IsEdit:true,
+    IsDelete:true,
+    IsDetail:false,
+    screen:'user'
   };
   constructor(private dataService: DataService,
     private loader: NgxUiLoaderService,
@@ -36,6 +47,7 @@ export class UserComponent  {
     this.dataService.getUsers().subscribe((res: any) =>{
       
         this.userRecords.data = [...res];
+        this.userdata = this.userRecords;
         this.loader.stop();
       
     },(err)=>{
@@ -44,8 +56,9 @@ export class UserComponent  {
     });
   }
 
-  onEdit(data) {
-    this.router.navigate(['/users/edit-user', data?.id]);
+  onEdit(singledata) {
+    debugger
+    this.router.navigate(['/users/edit-user', singledata?.docno]);
   }
 
   onDelete(data) {
