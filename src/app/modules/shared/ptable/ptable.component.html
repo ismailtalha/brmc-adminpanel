@@ -14,6 +14,7 @@
                 {{col.header}}
                 <!-- <p-sortIcon [field]="col.field"></p-sortIcon> -->
             </th>
+            <th>Status</th>
             <th>Action</th>
             <!-- </tr>
                  
@@ -52,6 +53,7 @@
 
         <tr>
             <td style="text-align:center" *ngFor="let col of columns">
+
                 <span> {{rowData[col.field]}}</span>
             </td>
             <td *ngIf="Records.screen == 'order'">

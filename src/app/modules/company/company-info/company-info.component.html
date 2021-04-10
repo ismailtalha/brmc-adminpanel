@@ -27,7 +27,16 @@
                           <div class="background"></div>
                         </label>
                         <br/>
-                        <input id="fileInput" type='file' (change)="onSelectFile($event)">
+                        <!-- <input id="fileInput" name="Your label here." type='file' (change)="onSelectFile($event)"> -->
+                        <div class="row">
+                          <div class="col-md-4"></div>
+                          <div class="col-md-4">
+                            <label for="files" class="btn btn-sm btn-primary">Select Image</label>
+                            <input id="files"  style="visibility:hidden;" (change)="onSelectFile($event)" type="file">
+                          </div>
+                          <div class="col-md-4"></div>
+                        
+                        </div>
                         <!-- //<button ngIf="url" (click)="delete()" >delete</button> -->
                         <!-- <img [src]="imageUrl" >
                         <input  type="file"  id="avatar" class="form-control form-control-alternative" > -->

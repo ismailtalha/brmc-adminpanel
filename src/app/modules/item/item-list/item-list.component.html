@@ -52,12 +52,12 @@
                <ng-template pTemplate="body" let-rowData let-columns="columns" let-row="rowData" let-expanded="expanded" >
 
                    <tr>
-                      <!-- <td>
+                      <td>
                           <a href="javascript:void(0)" [pRowToggler]="rowData">
                               <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
                               </i>
                           </a>
-                      </td> -->
+                      </td>
                        <td style="text-align:center" *ngFor="let col of columns">
                            <span *ngIf="col.field == 'Date'"> 
                              {{rowData[col.field] | date:'dd-MM-yyyy'}}

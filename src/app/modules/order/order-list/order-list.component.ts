@@ -18,11 +18,10 @@ export class OrderListComponent implements OnInit {
       cols: [
         { field: 'docno', header: 'Order #' },
         { field: 'deliveryaddress', header: 'Delivery Address' },
-        { field: 'totalamount', header: 'Total AMount' },
+        { field: 'totalamount', header: 'Total Amount' },
         { field: 'totaldiscount', header: 'Total Discount' },
         { field: 'totalgst', header: 'Total GST' },
-        { field: 'custname', header: 'Customer Name' },
-        { field: 'orderstatusname', header: 'Status' }
+        { field: 'custname', header: 'Customer Name' }
   
         
       ],
@@ -33,7 +32,8 @@ export class OrderListComponent implements OnInit {
       IsEdit:false,
       IsDelete:false,
       IsDetail:true,
-      screen:'order'
+      screen:'order',
+      globalFilter:true,
     };
   ngOnInit(): void {
     this.loader.start();
