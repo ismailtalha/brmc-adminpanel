@@ -17,7 +17,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { DboperationsComponent } from './dboperations/dboperations.component';
-
+import { ConnectionServiceModule } from 'ng-connection-service';
 
 
 @NgModule({

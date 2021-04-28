@@ -14,7 +14,7 @@
                 {{col.header}}
                 <!-- <p-sortIcon [field]="col.field"></p-sortIcon> -->
             </th>
-            <th>Status</th>
+            <th *ngIf="Records.screen == 'order'">Status</th>
             <th>Action</th>
             <!-- </tr>
                  

@@ -14,7 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ItemAddComponent implements OnInit {
   unitdetails: any=[];
-  edit: any;
+  edit: 0;
   url: string | ArrayBuffer;
 
   constructor(private dataService: DataService,
@@ -35,7 +35,7 @@ units:any=[];
         let data = res;
         
         this.itemform.patchValue(data);
-        this.url = data.itemimagelogo;
+        this.url = 'data:image/jpeg;base64,'+data.itemimagelogo;
         this.unitdetail.patchValue(data.itemunitsdetails)
         this.unitdetails = data.itemunitsdetails;
         this.loader.stop();
@@ -143,17 +143,36 @@ units:any=[];
       this.loader.start();
       if (this.edit) {
         this.dataService.addoreditItem(payload.itemform).subscribe((res: any) => {
-          this.router.navigate(['item']);
-          this.toastr.success('Item Updated Successfully');
-        this.loader.stop();
+          this.loader.stop();
+          if(res.errorstausno == 1)
+          {
+            this.router.navigate(['item']);
+            this.toastr.success('Item Updated Successfully');
+          }
+          else
+          {
+            this.toastr.warning(res.errortext);
+          }
+          
+        
         }, (err) =>  {
           this.loader.stop();
         });
       } else {
+
         this.dataService.addoreditItem(payload.itemform).subscribe((res: any) => {
-          this.router.navigate(['item']);
-            this.toastr.success('New Item Added Successfully');
           this.loader.stop();
+          if(res.errorstausno == 1)
+          {
+            this.router.navigate(['item']);
+            this.toastr.success('New Item Added Successfully');
+          }
+          else
+          {
+            this.toastr.warning(res.errortext);
+          }
+         
+        
         }, (err) =>  {
           this.loader.stop();
         });

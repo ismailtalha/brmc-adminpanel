@@ -50,22 +50,39 @@ export class BrandAddComponent implements OnInit {
     if(this.brands.valid) {
       this.loader.start();
       if (this.edit) {
-        this.dataService.addoreditBrand(this.brands.value).subscribe((res)=>{
+        this.dataService.addoreditBrand(this.brands.value).subscribe((res:any)=>{
           console.log(res);
           this.loader.stop();
-          this.router.navigate(['brand']);
-          this.toastr.success(' Brand Updated Successfully');
+          if(res.errorstatusno == 1)
+          {
+            this.router.navigate(['brand']);
+            this.toastr.success(' Brand Updated Successfully');
+          }
+          else
+          {
+            this.toastr.warning(res.errortext);
+          }
+         
         },(err)=>{
           console.log(err);
           this.toastr.error(err, "Error");
           this.loader.stop();
         });
       } else {
-        this.dataService.addoreditBrand(this.brands.value).subscribe((res)=>{
+        this.dataService.addoreditBrand(this.brands.value).subscribe((res:any)=>{
           console.log(res);
           this.loader.stop();
-          this.router.navigate(['brand']);
-          this.toastr.success('New Brand Added Successfully');
+          if(res.errorstatusno == 1)
+          {
+            
+            this.router.navigate(['brand']);
+            this.toastr.success('New Brand Added Successfully');
+          }
+          else
+          {
+            this.toastr.warning(res.errortext);
+          }
+          
         },(err)=>{
           console.log(err);
           this.toastr.error(err, "Error");

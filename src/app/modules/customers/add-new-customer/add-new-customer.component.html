@@ -21,24 +21,35 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="input-username">Name*</label>
-                          <input formControlName="custname" type="text" id="input-username" class="form-control form-control-alternative" placeholder="name">
+                          <input formControlName="custname" type="text" id="input-username" class="form-control form-control-alternative" >
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-email">Email address</label>
-                          <input formControlName="Email" type="email" id="input-email" class="form-control form-control-alternative" placeholder="email">
+                          <label class="form-control-label" for="input-last-name">Address</label>
+                          <input formControlName="address" type="test" id="input-last-name" class="form-control form-control-alternative" >
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-lg-6">
+                      <div class="col-lg-4">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-last-name">Contact</label>
-                          <input formControlName="Phone" type="number" id="input-last-name" class="form-control form-control-alternative" placeholder="Phone Number">
+                          <label class="form-control-label" for="input-last-name">Email</label>
+                          <input formControlName="email" type="test" id="input-last-name" class="form-control form-control-alternative" >
                         </div>
                       </div>
-
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-last-name">Contact</label>
+                          <input formControlName="contact" type="number" id="input-last-name" class="form-control form-control-alternative" >
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group form-check" style="margin-top: 55px;">
+                          <input type="checkbox"  formControlName="block" id="blockitem" class="form-check-input"  />
+                          <label for="blockitem" class="form-check-label">Is Block</label>
+                      </div>
+                      </div>
                     
                     </div>
                     <div class="row" style="float: right;">

@@ -13,11 +13,12 @@ export class CutomerComponent extends DboperationsComponent implements OnInit {
   Record: any = {
     data: [],
     cols: [
-      { field: 'custname', header: 'Name' },
       { field: 'custno', header: 'custno' },
-      { field: 'block', header: 'Status' },
+      { field: 'custname', header: 'Name' },
+      { field: 'address', header: 'Address' },
+      { field: 'contact', header: 'Contact' },
       { field: 'email', header: 'Email' },
-      { field: 'contact', header: 'contact' }
+      { field: 'block', header: 'IsBlock' },
 
       
     ],

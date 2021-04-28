@@ -21,7 +21,7 @@ export class CompanyInfoComponent implements OnInit {
 
     company = new FormGroup({
       companyno: new FormControl(null),
-      companyname: new FormControl({value:null,disabled: true}),
+      companyname: new FormControl(),
       currency: new FormControl(null),
       country: new FormControl(null),
       adres: new FormControl(null),
@@ -76,9 +76,17 @@ export class CompanyInfoComponent implements OnInit {
     if(this.company.valid) {
       this.loader.start();
       this.company.value.logo = this.company.value.logo.replace('data:image/jpeg;base64,',"");
-        this.dataService.UpdateCompany(this.company.value).subscribe((res)=>{
+        this.dataService.UpdateCompany(this.company.value).subscribe((res:any)=>{
           this.loader.stop();
-          this.toastr.success(' Company Updated Successfully');
+          if(res.errorstatusno == 1)
+          {
+            this.toastr.success(' Company Updated Successfully');
+          }
+          else
+          {
+            this.toastr.warning(res.errortext);
+          }
+          
         },(err)=>{
           console.log(err);
           this.toastr.error(err, "Error");

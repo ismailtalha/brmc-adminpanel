@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
+import { ConnectionService, ConnectionServiceModule } from 'ng-connection-service';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 import {
   chartOptions,
   parseOptions,
@@ -17,7 +19,15 @@ export class DashboardComponent implements OnInit {
   public salesChart;
   public clicked: boolean = true;
   public clicked1: boolean = false;
-  constructor() { }
+  title = 'internet-connection-check';
+  status = 'ONLINE'; //initializing as online by default
+  isConnected = true;
+  onlineEvent: Observable<Event>;
+  offlineEvent: Observable<Event>;
+  subscriptions: Subscription[] = [];
+  constructor() {  
+  
+    }
 
   ngOnInit() {
 
@@ -46,11 +56,24 @@ export class DashboardComponent implements OnInit {
 			options: chartExample1.options,
 			data: chartExample1.data
 		});
+    this.checkOnlineStatus();
   }
 
   public updateOptions() {
     this.salesChart.data.datasets[0].data = this.data;
     this.salesChart.update();
   }
+
+ 
+    checkOnlineStatus = () => {
+      debugger
+      this.onlineEvent = fromEvent(window, 'online');
+      this.offlineEvent = fromEvent(window, 'offline');
+  
+      this.subscriptions.push(this.onlineEvent.subscribe(() =>  alert('Connected!')));
+      this.subscriptions.push(this.offlineEvent.subscribe(() => alert('Check Connectivity!')));
+    }
+  
+  
 
 }

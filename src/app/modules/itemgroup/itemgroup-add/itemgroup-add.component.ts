@@ -51,22 +51,37 @@ export class ItemgroupAddComponent implements OnInit {
       if(this.itemgroups.valid) {
         this.loader.start();
         if (this.edit) {
-          this.dataService.addoreditItemGroup(this.itemgroups.value).subscribe((res)=>{
+          this.dataService.addoreditItemGroup(this.itemgroups.value).subscribe((res:any)=>{
             console.log(res);
             this.loader.stop();
-            this.router.navigate(['itemgroup']);
-            this.toastr.success(' Item Group Updated Successfully');
+            if(res.errorstatusno == 1)
+            {
+              this.router.navigate(['itemgroup']);
+              this.toastr.success(' Item Group Updated Successfully');
+            }
+            else
+            {
+              this.toastr.warning(res.errortext);
+            }
+           
           },(err)=>{
             console.log(err);
             this.toastr.error(err, "Error");
             this.loader.stop();
           });
         } else {
-          this.dataService.addoreditItemGroup(this.itemgroups.value).subscribe((res)=>{
+          this.dataService.addoreditItemGroup(this.itemgroups.value).subscribe((res:any)=>{
             console.log(res);
             this.loader.stop();
-            this.router.navigate(['itemgroup']);
-            this.toastr.success('New Item Group Added Successfully');
+            if(res.errorstatusno == 1)
+            {
+              this.router.navigate(['itemgroup']);
+              this.toastr.success('New Item Group Added Successfully');
+            }
+            else
+            {
+              this.toastr.warning(res.errortext);
+            }
           },(err)=>{
             console.log(err);
             this.toastr.error(err, "Error");

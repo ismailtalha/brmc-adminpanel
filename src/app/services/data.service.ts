@@ -332,5 +332,18 @@ export class DataService {
   {
     return this.http.post(url + '/sldsaleorderhdr/post',data);
   }
+  createcustomer(data)
+  {
+    return this.http.post(url + '/custinfo/post',data);
+  }
+  getallcustomer(data)
+  {
+    return this.http.get(url + '/custinfo/get');
+  }
+  getcustomerById(id)
+  {
+    return this.http.get(url + `/custinfo/get?no=${id}`);
+  }
 
+  
 }

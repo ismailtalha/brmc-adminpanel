@@ -35,6 +35,10 @@ const routes: Routes =[
         loadChildren: './modules/brand/brand.module#BrandModule', canActivate:[AuthGuardService]
       },
       {
+        path: 'unit',
+        loadChildren: './modules/unit/unit.module#UnitModule', canActivate:[AuthGuardService]
+      },
+      {
         path: 'itemgroup',
         loadChildren: './modules/itemgroup/itemgroup.module#ItemgroupModule', canActivate:[AuthGuardService]
       },

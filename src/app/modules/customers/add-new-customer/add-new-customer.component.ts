@@ -15,12 +15,12 @@ export class AddNewCustomerComponent implements OnInit {
     custname: new FormControl(null, Validators.required),
     custno: new FormControl(null),
     email: new FormControl(null, Validators.email),
-    contact: new FormControl(null, Validators.required),
+    contact: new FormControl(null),
     address: new FormControl(null),
     custtype: new FormControl(null) ,
-    web: new FormControl(false),
+    web: new FormControl(null),
     fax: new FormControl(null),
-    block: new FormControl(false),
+    block: new FormControl(null),
     ntnno: new FormControl(null) ,
     strnno: new FormControl(null),
   });
@@ -37,16 +37,9 @@ export class AddNewCustomerComponent implements OnInit {
       this.edit = this.route.snapshot.params.id;
       let id = this.route.snapshot.params.id;
       this.loader.start();
-      this.dataService.getCustomerById(id).subscribe((res: any)=>{
-        let data = res.data;
-        this.customers.patchValue({
-          Name: data[0]?.Name,
-          Phone: data[0]?.Phone,
-          Email: data[0]?.Email,
-          AccountId: data[0]?.AccountId,
-          OpeningBalance: data[0]?.OpeningBalance,
-          OpeningBalanceType: data[0]?.OpeningBalanceType
-        });
+      this.dataService.getcustomerById(id).subscribe((res: any)=>{
+        let data = res;
+        this.customers.patchValue(data);
         this.loader.stop();
       },(err)=>{
         console.log(err);
@@ -55,34 +48,34 @@ export class AddNewCustomerComponent implements OnInit {
     }
   }
 
-  @HostListener('document:keyup', ['$event'])
-  onKeyUp (event: KeyboardEvent) {
-    if (event.keyCode == 18) {
-      this.create();
-      event.preventDefault();
-    }
-  }
+  
 
   create() {
     if(this.customers.valid) {
       this.loader.start();
       if (this.edit) {
-        this.dataService.updateCustomer(this.edit,this.customers.value).subscribe((res)=>{
+        this.dataService.createcustomer(this.customers.value).subscribe((res:any)=>{
           console.log(res);
           this.loader.stop();
-          this.router.navigate(['customers']);
-          this.toastr.success('Customers Updated Successfully');
+          if(res.errorstatusno == 1)
+          {
+            this.router.navigate(['customers']);
+            this.toastr.success('Customers Updated Successfully');
+          }
+         else
+         {
+          this.toastr.warning(res.errortext);
+         }
         },(err)=>{
         console.log(err);
         this.toastr.error(err, "Error");
         this.loader.stop();
       });
       } else {
-        if (this.customers.value.OpeningBalance > 0 && this.customers.value.OpeningBalanceType === null) {
-          this.toastr.error('Please Select Opening Type Balance', "Error");
+        
+         
           this.loader.stop();
-        } else {
-          this.dataService.createCustomer(this.customers.value).subscribe((res)=>{
+          this.dataService.createcustomer(this.customers.value).subscribe((res)=>{
             console.log(res);
             this.loader.stop();
             this.router.navigate(['customers']);
@@ -92,7 +85,6 @@ export class AddNewCustomerComponent implements OnInit {
           console.log(err);
           this.loader.stop();
         });
-        }
       }
       
     } else {

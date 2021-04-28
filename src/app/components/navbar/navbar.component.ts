@@ -4,6 +4,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { Router } from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 import { DataService } from 'src/app/services/data.service';
+import { ConnectionService } from 'ng-connection-service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,8 @@ export class NavbarComponent implements OnInit {
   public location: Location;
   date = new Date();
   userName = (localStorage.getItem('userName')) ? localStorage.getItem('userName').toUpperCase() : 'Admin';
+  isConnected: boolean;
+  noInternetConnection: boolean;
   constructor(location: Location,  private element: ElementRef, private router: Router, private cookies: CookieService, private dataService: DataService) {
     this.location = location;
   }
@@ -42,5 +45,7 @@ export class NavbarComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['auth']);
   }
+
+
 
 }

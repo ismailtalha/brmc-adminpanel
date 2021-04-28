@@ -33,9 +33,9 @@ export class ItemListComponent implements OnInit {
     cols: [
       { field: 'itemno', header: 'Item #' },
       { field: 'itemname', header: 'Item Name' },
-      { field: 'itemgroupno', header: 'Item Group' },
-      { field: 'productno', header: 'Product' },
-      { field: 'makeno', header: 'Brand' },
+      { field: 'itemgroupname', header: 'Item Group' },
+      { field: 'productname', header: 'Product' },
+      { field: 'makename', header: 'Brand' },
       { field: 'saleprice', header: 'Sale Price' },
       { field: 'costprice', header: 'Cost Price' },
       // { field: 'itemdetails', header: 'Description' }
