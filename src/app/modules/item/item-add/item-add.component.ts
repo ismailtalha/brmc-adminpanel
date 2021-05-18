@@ -66,7 +66,9 @@ units:any=[];
     itemdetails:new FormControl(null),
     itemunitsdetails:new FormControl(null),
     itemno: new FormControl(null),
-    itemimagelogo:new FormControl(null)
+    itemimagelogo:new FormControl(null),
+    authenticationtoken:new FormControl(null),
+    createdate:new FormControl()
   
   });
   unitdetail = new FormGroup({
@@ -77,7 +79,8 @@ units:any=[];
     dcostprice:new FormControl(null),
     ltxt:new FormControl(null),
     itemno: new FormControl(null),
-    unitname: new FormControl(null)
+    unitname: new FormControl(null),
+    authenticationtoken:new FormControl(null)
   
   });
   getalldropdowns()
@@ -133,10 +136,11 @@ units:any=[];
   }
 
   onSave() {
-    
+    debugger
     if (this.itemform.valid && this.unitdetails.length > 0) {
+      this.itemform.value.authenticationtoken = localStorage.getItem('authtoken')
       const payload = {
-        itemform: this.itemform.getRawValue(),
+        itemform: this.itemform.value,
         unitdetails: this.unitdetails
       };
       payload.itemform.itemunitsdetails = this.unitdetails;
@@ -144,7 +148,7 @@ units:any=[];
       if (this.edit) {
         this.dataService.addoreditItem(payload.itemform).subscribe((res: any) => {
           this.loader.stop();
-          if(res.errorstausno == 1)
+          if(res.errorstatusno == 1)
           {
             this.router.navigate(['item']);
             this.toastr.success('Item Updated Successfully');
@@ -162,7 +166,8 @@ units:any=[];
 
         this.dataService.addoreditItem(payload.itemform).subscribe((res: any) => {
           this.loader.stop();
-          if(res.errorstausno == 1)
+          debugger
+          if(res.errorstatusno == 1)
           {
             this.router.navigate(['item']);
             this.toastr.success('New Item Added Successfully');

@@ -32,7 +32,8 @@ export class CompanyInfoComponent implements OnInit {
       companydescription: new FormControl(null),
       ourworks: new FormControl(null),
       ourexperience: new FormControl(null),
-      logo:new FormControl(null)
+      logo:new FormControl(null),
+      authenticationtoken:new FormControl(null)
       
     });
     
@@ -74,7 +75,9 @@ export class CompanyInfoComponent implements OnInit {
   OnUpdate()
   {
     if(this.company.valid) {
+      this.company.value.authenticationtoken = localStorage.getItem('authtoken')
       this.loader.start();
+
       this.company.value.logo = this.company.value.logo.replace('data:image/jpeg;base64,',"");
         this.dataService.UpdateCompany(this.company.value).subscribe((res:any)=>{
           this.loader.stop();

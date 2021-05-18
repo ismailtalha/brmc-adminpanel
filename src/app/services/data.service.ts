@@ -8,22 +8,23 @@ const url = environment.url;
   providedIn: 'root'
 })
 export class DataService {
-
+   authtoken = localStorage.getItem('authtoken');
   constructor(private http: HttpClient) { }
 
+  
   login(data) {
     return this.http.post(url + '/user/login', data);
   }
   getsingleuser(id)
   {
-    return this.http.get(url +`cobuserhdr/get?no=${id}`);
+    return this.http.get(url +`cobuserhdr/get?no=${id}&authenticationtoken=${this.authtoken}`);
   }
   getsinglecustomer(id)
   {
     return this.http.get(url +`custinfo/get?no=${id}`);
   }
   getUsers() {
-    return this.http.get(url + '/cobuserhdr/get');
+    return this.http.get(url + `/cobuserhdr/get?authenticationtoken=${this.authtoken}`);
   }
 
   getUsersById(id) {
@@ -43,11 +44,11 @@ export class DataService {
   }
 
   getCustomers() {
-    return this.http.get(url + '/custinfo/get');
+    return this.http.get(url + `/custinfo/get?authenticationtoken=${this.authtoken}`);
   }
 
   getCustomerById(id) {
-    return this.http.get(url + `/customer/${id}`);
+    return this.http.get(url + `/customer/${id}?authenticationtoken=${this.authtoken}`);
   }
 
   createCustomer(data) {
@@ -314,7 +315,7 @@ export class DataService {
   }
   getOrders()
   {
-    return this.http.get(url + `/sldsaleorderhdr/get`);
+    return this.http.get(url + `/sldsaleorderhdr/get?authenticationtoken=${this.authtoken}`);
   }
   getCompany()
   {
@@ -326,7 +327,7 @@ export class DataService {
   }
   getOrderById(id)
   {
-    return this.http.get(url + `/sldsaleorderhdr/get?no=${id}`);
+    return this.http.get(url + `/sldsaleorderhdr/get?no=${id}&authenticationtoken=${this.authtoken}`);
   }
   updateOrder(data)
   {
@@ -334,16 +335,19 @@ export class DataService {
   }
   createcustomer(data)
   {
-    return this.http.post(url + '/custinfo/post',data);
+    return this.http.post(url + `/custinfo/post`,data);
   }
   getallcustomer(data)
   {
-    return this.http.get(url + '/custinfo/get');
+    return this.http.get(url + `/custinfo/get?authenticationtoken=${this.authtoken}`);
   }
   getcustomerById(id)
   {
-    return this.http.get(url + `/custinfo/get?no=${id}`);
+    return this.http.get(url + `/custinfo/get?no=${id}&authenticationtoken=${this.authtoken}`);
   }
-
+  createorder(data)
+  {
+    return this.http.post(url + "sldsaleorderhdr/post" , data);
+  }
   
 }

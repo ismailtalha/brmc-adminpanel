@@ -27,7 +27,7 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-username">Delivery Address</label>
-                            <input formControlName ="deliveryaddress" class="form-control form-control-alternative"  type="number">
+                            <input formControlName ="deliverylocation" class="form-control form-control-alternative"  type="text">
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -72,6 +72,16 @@
                             <input formControlName ="totalgst" class="form-control form-control-alternative"  type="text">
                         </div>
                       </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">Change Status</label>
+                          <select formControlName="orderstatusno" (change)="changestatus()" class="" aria-label="Default select example">
+                            <option *ngFor="let status of statusarr"  [ngValue]="status">{{status.orderstatusname}}</option>
+                            
+                          </select>
+                        </div>
+                      </div>
+                   
                       <div class="col-lg-12">
                         <div class="form-group">
                             <label class="form-control-label" >Description</label>

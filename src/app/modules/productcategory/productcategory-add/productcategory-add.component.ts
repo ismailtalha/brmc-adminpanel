@@ -20,7 +20,8 @@ export class ProductcategoryAddComponent implements OnInit {
     productname: new FormControl(null, Validators.required),
     discountpercentage: new FormControl(null),
     productno:new FormControl(null),
-    itemgroupno: new FormControl(null, Validators.required)
+    itemgroupno: new FormControl(null, Validators.required),
+    authenticationtoken:new FormControl(null)
   
   });
   edit: any;
@@ -65,6 +66,7 @@ export class ProductcategoryAddComponent implements OnInit {
   }
   create() {
     if(this.categories.valid) {
+      this.categories.value.authenticationtoken = localStorage.getItem('authtoken')
       this.loader.start();
       if (this.edit) {
         this.dataService.addoreditCategory(this.categories.value).subscribe((res:any)=>{

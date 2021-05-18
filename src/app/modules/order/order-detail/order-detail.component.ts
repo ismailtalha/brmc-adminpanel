@@ -13,60 +13,67 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class OrderDetailComponent implements OnInit {
   edit: any;
   orderdetails: any = [];
-
+  selected:any;
+  statusarr = [{'orderstatusno':'01' , 'orderstatusname' : "Pending"},
+  {'orderstatusno':'02' , 'orderstatusname' : "Dispatched"},
+  {'orderstatusno':'03' , 'orderstatusname' : "Delivered"},
+  {'orderstatusno':'04' , 'orderstatusname' : "Invoiced"},
+  {'orderstatusno':'05' , 'orderstatusname' : "Closed"}]
   constructor(private dataService: DataService,
     private loader: NgxUiLoaderService,
     private router: Router,private toastr: ToastrService,private route: ActivatedRoute) { }
     orderform = new FormGroup({
-      docno: new FormControl({value:null,disabled:true}),
-      saleperson: new FormControl({value:null,disabled:true}),
-      responsibleperson:new FormControl({value:null,disabled:true}),
-      orderstatusno: new FormControl({value:null,disabled:true}),
-      plantno: new FormControl({value:null,disabled:true}),
-      custno:new FormControl({value:null,disabled:true}),
-      contactperson: new FormControl({value:null,disabled:true}),
-      contactpersoncellno: new FormControl({value:null,disabled:true}),
-      deliveryaddress:new FormControl({value:null,disabled:true}),
-      description: new FormControl({value:null,disabled:true}),
-      currency: new FormControl({value:null,disabled:true}),
-      erate:new FormControl({value:null,disabled:true}),
-      paymentmethode: new FormControl({value:null,disabled:true}),
-      paymentterm: new FormControl({value:null,disabled:true}),
-      totalamount:new FormControl({value:null,disabled:true}),
-      totaldiscount: new FormControl({value:null,disabled:true}),
-      totalgst: new FormControl({value:null,disabled:true}),
-      freightcharges:new FormControl({value:null,disabled:true}),
-      totalnetamount: new FormControl({value:null,disabled:true}),
-      deliverylocation: new FormControl({value:null,disabled:true}),
-      orderstatusname:new FormControl({value:null,disabled:true}),
-      custname: new FormControl({value:null,disabled:true}),
-      custtype: new FormControl({value:null,disabled:true}),
-      custgroupno:new FormControl({value:null,disabled:true}),
-      custgroupname:new FormControl({value:null,disabled:true}),
-      area: new FormControl({value:null,disabled:true}),
-      address: new FormControl({value:null,disabled:true}),
-      sldsaleorderdtls:new FormControl({value:null,disabled:true})
+      docno: new FormControl(),
+      saleperson: new FormControl(),
+      responsibleperson:new FormControl(),
+      orderstatusno: new FormControl(),
+      plantno: new FormControl(),
+      custno:new FormControl(),
+      contactperson: new FormControl(),
+      contactpersoncellno: new FormControl(),
+      deliveryaddress:new FormControl(),
+      description: new FormControl(),
+      currency: new FormControl(),
+      erate:new FormControl(),
+      paymentmethode: new FormControl(),
+      paymentterm: new FormControl(),
+      totalamount:new FormControl(),
+      totaldiscount: new FormControl(),
+      totalgst: new FormControl(),
+      freightcharges:new FormControl(),
+      totalnetamount: new FormControl(),
+      deliverylocation: new FormControl(),
+      orderstatusname:new FormControl(),
+      custname: new FormControl(),
+      custtype: new FormControl(),
+      custgroupno:new FormControl(),
+      custgroupname:new FormControl(),
+      area: new FormControl(),
+      address: new FormControl(),
+      sldsaleorderdtls:new FormControl(),
+      selected:new FormControl()
+      
     
     });
     orderdetail = new FormGroup({
-      itemno: new FormControl({value:null,disabled:true}),
-      baseunitno: new FormControl({value:null,disabled:true}),
-      factorno:new FormControl({value:null,disabled:true}),
-      equivalent: new FormControl({value:null,disabled:true}),
-      quantity: new FormControl({value:null,disabled:true}),
-      price:new FormControl({value:null,disabled:true}),
-      amount:new FormControl({value:null,disabled:true}),
-      discount: new FormControl({value:null,disabled:true}),
-      gst: new FormControl({value:null,disabled:true}),
-      netamount:new FormControl({value:null,disabled:true}),
-      ltxt: new FormControl({value:null,disabled:true}),
-      itemdimensionno: new FormControl({value:null,disabled:true}),
-      itemdimensiontype:new FormControl({value:null,disabled:true}),
-      itemname: new FormControl({value:null,disabled:true}),
-      unitname: new FormControl({value:null,disabled:true}),
-      makename:new FormControl({value:null,disabled:true}),
-      productname: new FormControl({value:null,disabled:true}),
-      itemgroupname:new FormControl({value:null,disabled:true}),
+      itemno: new FormControl(),
+      baseunitno: new FormControl(),
+      factorno:new FormControl(),
+      equivalent: new FormControl(),
+      quantity: new FormControl(),
+      price:new FormControl(),
+      amount:new FormControl(),
+      discount: new FormControl(),
+      gst: new FormControl(),
+      netamount:new FormControl(),
+      ltxt: new FormControl(),
+      itemdimensionno: new FormControl(),
+      itemdimensiontype:new FormControl(),
+      itemname: new FormControl(),
+      unitname: new FormControl(),
+      makename:new FormControl(),
+      productname: new FormControl(),
+      itemgroupname:new FormControl(),
     
     });
 
@@ -83,6 +90,7 @@ export class OrderDetailComponent implements OnInit {
         
         this.orderform.patchValue(data);
         // this.orderdetail.patchValue(data.sldsaleorderdtls);
+        this.orderform.value.selected = this.getstatus(data.orderstatusno)
         this.orderdetails=data.sldsaleorderdtls
         this.loader.stop();
       },(err)=>{
@@ -91,5 +99,20 @@ export class OrderDetailComponent implements OnInit {
       });
     }
   }
+  changestatus()
+  {
+    debugger
 
+    this.dataService.createorder(this.orderform.value).subscribe((res:any) => {
+      this.loader.stop();
+      this.selected.orderstatusno = res.orderstatusno
+      alert('done')
+    })
+   
+  }
+  getstatus(no)
+{
+ let value = this.statusarr.filter((sttaus) => sttaus.orderstatusno == no)
+ return value[0];
+}
 }

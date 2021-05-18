@@ -19,7 +19,8 @@ export class BrandAddComponent implements OnInit {
   brands = new FormGroup({
     makename: new FormControl(null, Validators.required),
     discountpercentage: new FormControl(null),
-    makeno:new FormControl(null)
+    makeno:new FormControl(null),
+    authenticationtoken:new FormControl(null)
   
   });
   edit: any;
@@ -48,8 +49,10 @@ export class BrandAddComponent implements OnInit {
 
   create() {
     if(this.brands.valid) {
+      this.brands.value.authenticationtoken = localStorage.getItem('authtoken')
       this.loader.start();
       if (this.edit) {
+        
         this.dataService.addoreditBrand(this.brands.value).subscribe((res:any)=>{
           console.log(res);
           this.loader.stop();

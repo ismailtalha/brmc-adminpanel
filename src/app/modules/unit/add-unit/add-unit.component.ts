@@ -20,7 +20,8 @@ export class AddUnitComponent implements OnInit {
   units = new FormGroup({
     unitname: new FormControl(null, Validators.required),
     unitdescription: new FormControl(null),
-    unitno:new FormControl(null)
+    unitno:new FormControl(null),
+    authenticationtoken:new FormControl(null)
   
   });
   edit: any;
@@ -48,6 +49,7 @@ export class AddUnitComponent implements OnInit {
 
   create() {
     if(this.units.valid) {
+      this.units.value.authenticationtoken = localStorage.getItem('authtoken')
       this.loader.start();
       if (this.edit) {
         this.dataService.addoreditUnit(this.units.value).subscribe((res:any)=>{

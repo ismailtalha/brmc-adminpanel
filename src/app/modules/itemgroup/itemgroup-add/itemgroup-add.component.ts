@@ -20,7 +20,8 @@ export class ItemgroupAddComponent implements OnInit {
     itemgroups = new FormGroup({
       itemgroupname: new FormControl(null, Validators.required),
       discountpercentage: new FormControl(null),
-      itemgroupno:new FormControl(null)
+      itemgroupno:new FormControl(null),
+      authenticationtoken:new FormControl(null)
     
     });
     edit: any;
@@ -49,6 +50,7 @@ export class ItemgroupAddComponent implements OnInit {
   
     create() {
       if(this.itemgroups.valid) {
+        this.itemgroups.value.authenticationtoken = localStorage.getItem('authtoken')
         this.loader.start();
         if (this.edit) {
           this.dataService.addoreditItemGroup(this.itemgroups.value).subscribe((res:any)=>{

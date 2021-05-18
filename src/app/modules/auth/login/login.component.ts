@@ -26,12 +26,13 @@ export class LoginComponent implements OnInit {
     
     this.loader.start();
     debugger
-    this.dataService.getsinglecustomer(this.form.value.Name).subscribe((res: any) =>{
+    this.dataService.getsingleuser(this.form.value.Name).subscribe((res: any) =>{
       if(res?.password === this.form.value.Password) {
        // this.cookies.set('token', res?.token);
         localStorage.setItem('userName', res?.userno);
         localStorage.setItem('id', res?.id);
         localStorage.setItem('userAccountId', res?.AccountId);
+        localStorage.setItem('authtoken',res?.authenticationtoken)
         this.router.navigate(['dashboard']);
         this.loader.stop();
         this.toastr.success('Login Successfully', 'Success');

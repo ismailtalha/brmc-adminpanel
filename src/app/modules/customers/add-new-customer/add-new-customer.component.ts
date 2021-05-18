@@ -23,6 +23,7 @@ export class AddNewCustomerComponent implements OnInit {
     block: new FormControl(null),
     ntnno: new FormControl(null) ,
     strnno: new FormControl(null),
+    authenticationtoken:new FormControl(null)
   });
   edit: any;
   accounts: any;
@@ -48,10 +49,15 @@ export class AddNewCustomerComponent implements OnInit {
     }
   }
 
-  
+  setval()
+  {
+    let pass= Array(10).fill("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz").map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+    this.customers.patchValue({'custname':pass})
+  }
 
   create() {
     if(this.customers.valid) {
+      this.customers.value.authenticationtoken = localStorage.getItem('authtoken')
       this.loader.start();
       if (this.edit) {
         this.dataService.createcustomer(this.customers.value).subscribe((res:any)=>{

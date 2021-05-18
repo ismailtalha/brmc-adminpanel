@@ -16,7 +16,8 @@ export class NewUserComponent implements OnInit {
     username: new FormControl(null, Validators.required),
     userno : new FormControl(null,Validators.required),
     password: new FormControl(null, Validators.required),
-    usertype: new FormControl('admin', Validators.required)
+    usertype: new FormControl('admin', Validators.required),
+    authenticationtoken:new FormControl(null)
   });
   edit: any;
   
@@ -50,6 +51,7 @@ export class NewUserComponent implements OnInit {
   //   }
   create() {
     if(this.users.valid) {
+      this.users.value.authenticationtoken = localStorage.getItem('authtoken')
       this.loader.start();
         this.dataService.createUser(this.users.value).subscribe((res)=>{
           console.log(res);
