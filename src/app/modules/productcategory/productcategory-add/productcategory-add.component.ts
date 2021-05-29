@@ -21,6 +21,12 @@ export class ProductcategoryAddComponent implements OnInit {
     discountpercentage: new FormControl(null),
     productno:new FormControl(null),
     itemgroupno: new FormControl(null, Validators.required),
+    rowno:new FormControl(null),
+    createuser:new FormControl(null),
+    createdate:new FormControl(null),
+    createtime:new FormControl(null),
+    createterminal:new FormControl(null),
+    createterminalip:new FormControl(null),
     authenticationtoken:new FormControl(null)
   
   });
@@ -40,9 +46,13 @@ export class ProductcategoryAddComponent implements OnInit {
           productname: data?.productname,
           discountpercentage: data?.discountpercentage,
           productno : data?.productno,
-          itemgroupno:data?.itemgroupno
-        });
+          itemgroupno:data?.itemgroupno,
+          rowno:data?.rowno
+        });    
+        debugger;    
         this.categories.value.productno = data;
+        //this.categories.value.createuser = data?.createuser;
+        //this.categories.value.rowno = data?.rowno;
         this.loader.stop();
       },(err)=>{
         console.log(err);
@@ -67,6 +77,7 @@ export class ProductcategoryAddComponent implements OnInit {
   create() {
     if(this.categories.valid) {
       this.categories.value.authenticationtoken = localStorage.getItem('authtoken')
+      debugger;
       this.loader.start();
       if (this.edit) {
         this.dataService.addoreditCategory(this.categories.value).subscribe((res:any)=>{

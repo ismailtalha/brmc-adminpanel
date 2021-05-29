@@ -17,12 +17,14 @@ export class OrderListComponent implements OnInit {
       data: [],
       cols: [
         { field: 'docno', header: 'Order #' },
-        { field: 'deliveryaddress', header: 'Delivery Address' },
+        { field: 'docdate', header: 'Date' },
+        { field: 'custname', header: 'Customer Name' },        
         { field: 'totalamount', header: 'Total Amount' },
         { field: 'totaldiscount', header: 'Total Discount' },
-        { field: 'totalgst', header: 'Total GST' },
-        { field: 'custname', header: 'Customer Name' }
-  
+        { field: 'totalnetamount', header: 'Net Amount' },
+        { field: 'currency', header: 'Currency' },
+        { field: 'deliverylocation', header: 'Delivery Address' }  ,      
+        { field: 'mobileno', header: 'Cell #' }        
         
       ],
       first: 0,

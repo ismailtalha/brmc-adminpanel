@@ -122,6 +122,12 @@
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
+                            <label class="form-control-label" for="input-username">Name*</label>
+                            <input formControlName="itemname" class="form-control form-control-alternative"  type="text">
+                        </div>
+                      </div>                      
+                      <div class="col-lg-6">
+                        <div class="form-group">
                             <label class="form-control-label" for="input-username">Sale Price*</label>
                             <input formControlName="saleprice" class="form-control form-control-alternative"  type="text">
                         </div>
@@ -132,19 +138,57 @@
                             <input formControlName="costprice" class="form-control form-control-alternative"  type="number">
                         </div>
                       </div>
-                      <div class="col-lg-6">
+
+                      <div class="col-lg-3">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-username">Name*</label>
-                            <input formControlName="itemname" class="form-control form-control-alternative"  type="text">
+                            <label class="form-control-label" for="input-username">Base Unit</label>
+                            
+                            <!-- <ng-select [items]="units"
+                            (change)="onBaseUnitChange($event)"
+                                      bindLabel="unitname"
+                                      bindValue="unitname"
+                                      placeholder="Select Base Unit"
+                                      formControlName="baseunitname">
+                                      <ng-template ng-label-tmp let-item="item">
+                                        <b>{{item.unitname}}</b>
+                                      </ng-template>
+                                    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                      <b>{{item.unitname}}</b>
+                                  </ng-template>
+                            </ng-select> -->
+
+                            <ng-select [items]="baseunits"
+                            (change)="onBaseUnitChange($event)"
+                                      bindLabel="baseunitname"
+                                      bindValue="unitname"
+                                      placeholder="Select Base Unit"
+                                      formControlName="baseunitname">
+                                      <ng-template ng-label-tmp let-item="item">
+                                        <b>{{item.unitname}}<span><small><b>({{item.unitno}})</b></small></span></b>
+                                      </ng-template>
+                                    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                      <b>{{item.unitname}}<span><small><b>({{item.unitno}})</b></small></span></b>
+                                  </ng-template>
+                            </ng-select>
+
+
                         </div>
                       </div>
+
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Open Stock</label>
+                            <input formControlName="itemstock" class="form-control form-control-alternative"  type="number">
+                        </div>
+                      </div>
+                      
                       <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-username">Barcode</label>
                             <input formControlName="itembarcode" class="form-control form-control-alternative"  type="text">
                         </div>
                       </div>
-                      <div class="col-lg-6">
+                      <div class="col-lg-3">
                         <div class="form-group">
                             <label class="form-control-label" for="input-username">Recorder Level</label>
                             <input formControlName="reorderlevel" class="form-control form-control-alternative"  type="text">
@@ -230,7 +274,12 @@
                           <input formControlName="dcostprice" class="form-control form-control-alternative"  type="number">
                         </div>
                       </div>
-
+                      <div class="col-lg-3">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">Unit Stock</label>
+                          <input  formControlName="itemunitstock" class="form-control form-control-alternative"  type="number">
+                        </div>
+                      </div>
                    
 
                       <div class="col-lg-11">
@@ -262,6 +311,7 @@
                             <th scope="col">Equivalent</th>
                             <th scope="col">Sale Price</th>
                             <th scope="col">Cost Price</th>
+                            <th scope="col">Unit Stock</th>
                             <th scope="col">Description</th>
                             <th scope="col">Action</th>
                           </tr>
@@ -272,6 +322,7 @@
                             <td>{{de.equivalent}}</td>
                             <td>{{de.dsaleprice}}</td>
                             <td>{{de.dcostprice}}</td>
+                            <td>{{de.itemunitstock}}</td>
                             <td>{{de.ltxt}}</td>
 
 

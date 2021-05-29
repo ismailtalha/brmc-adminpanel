@@ -17,6 +17,7 @@ export class NewUserComponent implements OnInit {
     userno : new FormControl(null,Validators.required),
     password: new FormControl(null, Validators.required),
     usertype: new FormControl('admin', Validators.required),
+    rowno:new FormControl(null),
     authenticationtoken:new FormControl(null)
   });
   edit: any;

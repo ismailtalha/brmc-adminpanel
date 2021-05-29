@@ -24,14 +24,14 @@ categories:any=[];
 brands:any=[];
 itemgroups:any=[];
 units:any=[];
-
+baseunits:any=[];
   ngOnInit(): void {
     if(this.route.snapshot.params.id) {
       this.edit = this.route.snapshot.params.id;
       let id = this.route.snapshot.params.id;
       this.loader.start();
       this.dataService.getItemById(id).subscribe((res: any)=>{
-        
+        debugger;
         let data = res;
         
         this.itemform.patchValue(data);
@@ -59,6 +59,9 @@ units:any=[];
     itemname:new FormControl(null, Validators.required),
     itembarcode:new FormControl(null),
     reorderlevel:new FormControl(null),
+    baseunitno:new FormControl(null),
+    baseunitname:new FormControl(null),
+    itemstock:new FormControl(null),
     discountpercentage:new FormControl(null),
     isfeatured:new FormControl(null),
     isnewarrival:new FormControl(null),
@@ -66,6 +69,7 @@ units:any=[];
     itemdetails:new FormControl(null),
     itemunitsdetails:new FormControl(null),
     itemno: new FormControl(null),
+    rowno:new FormControl(null),
     itemimagelogo:new FormControl(null),
     authenticationtoken:new FormControl(null),
     createdate:new FormControl()
@@ -80,6 +84,8 @@ units:any=[];
     ltxt:new FormControl(null),
     itemno: new FormControl(null),
     unitname: new FormControl(null),
+    itemunitstock: new FormControl(null),
+    rowno:new FormControl(null),
     authenticationtoken:new FormControl(null)
   
   });
@@ -90,11 +96,13 @@ units:any=[];
     let brands = this.dataService.getBrands();
     let itemgroups = this.dataService.getItemGroup();
     let units = this.dataService.getUnits();
-    forkJoin([categories, itemgroups, brands,units]).subscribe(([catres, itemgroupres, resbrands,resunits]) => {
+    let baseunits = this.dataService.getUnits();
+    forkJoin([categories, itemgroups, brands,units,baseunits]).subscribe(([catres, itemgroupres, resbrands,resunits,resbaseunits]) => {
       this.categories = catres;
       this.brands = resbrands;
       this.itemgroups = itemgroupres;
       this.units = resunits;
+      this.baseunits = resbaseunits;
       this.loader.stop();
     }), (error) => {
       console.log(error);
@@ -121,8 +129,9 @@ units:any=[];
       dcostprice:value.dcostprice,
       ltxt:value.ltxt,
       unitname:value.factorunitname,
-      itemno:value.itemno
-    
+      itemno:value.itemno,
+      itemunitstock:value.itemunitstock,
+      rowno:value.rowno
     });
   
     const index = this.unitdetails.indexOf(value);
@@ -194,6 +203,13 @@ units:any=[];
       factorunitname:value?.unitname
     })
   }
+  onBaseUnitChange(value)
+  {    
+    this.itemform.patchValue({
+      baseunitno : value?.unitno
+    })
+  }
+  
   onCategoryChange(value)
   {
     

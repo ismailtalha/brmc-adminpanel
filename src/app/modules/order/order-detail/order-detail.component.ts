@@ -50,6 +50,7 @@ export class OrderDetailComponent implements OnInit {
       custgroupname:new FormControl(),
       area: new FormControl(),
       address: new FormControl(),
+      rowno:new FormControl(null),
       sldsaleorderdtls:new FormControl(),
       selected:new FormControl()
       
@@ -74,6 +75,7 @@ export class OrderDetailComponent implements OnInit {
       makename:new FormControl(),
       productname: new FormControl(),
       itemgroupname:new FormControl(),
+      rowno:new FormControl(null),
     
     });
 
@@ -85,7 +87,7 @@ export class OrderDetailComponent implements OnInit {
       let id = this.route.snapshot.params.id;
       this.loader.start();
       this.dataService.getOrderById(id).subscribe((res: any)=>{
-        
+        debugger;
         let data = res;
         
         this.orderform.patchValue(data);

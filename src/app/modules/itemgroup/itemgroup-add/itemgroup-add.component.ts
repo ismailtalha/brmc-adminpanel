@@ -21,6 +21,7 @@ export class ItemgroupAddComponent implements OnInit {
       itemgroupname: new FormControl(null, Validators.required),
       discountpercentage: new FormControl(null),
       itemgroupno:new FormControl(null),
+      rowno:new FormControl(null),
       authenticationtoken:new FormControl(null)
     
     });
@@ -37,7 +38,8 @@ export class ItemgroupAddComponent implements OnInit {
           this.itemgroups.patchValue({
             itemgroupname: data?.itemgroupname,
             discountpercentage: data?.discountpercentage,
-            itemgroupno : data?.itemgroupno
+            itemgroupno : data?.itemgroupno,
+            rowno:data?.rowno
           });
           this.itemgroups.value.itemgroupno = data;
           this.loader.stop();

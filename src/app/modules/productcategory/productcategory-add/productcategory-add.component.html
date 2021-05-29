@@ -27,7 +27,7 @@
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-first-name">Group Type*</label>
+                          <label class="form-control-label" for="input-first-name">Item Group*</label>
                           <select formControlName="itemgroupno" class="form-control form-control-alternative">
                             <option [ngValue]="null" disabled>Select Group</option>
                             <option *ngFor="let a of groupTypes" [value]="a?.itemgroupno">{{a?.itemgroupname}}</option>

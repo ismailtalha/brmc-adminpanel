@@ -18,7 +18,7 @@ export class ProductcategoryListComponent implements OnInit {
       { field: 'productno', header: 'Category No' },
       { field: 'productname', header: 'Category Name' },
       { field: 'discountpercentage', header: 'Discount %' },
-      { field: 'itemgroupno', header: 'Group No' }
+      { field: 'itemgroupname', header: 'Group Name' }
       
     ],
     first: 0,

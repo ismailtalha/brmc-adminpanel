@@ -20,6 +20,7 @@ export class BrandAddComponent implements OnInit {
     makename: new FormControl(null, Validators.required),
     discountpercentage: new FormControl(null),
     makeno:new FormControl(null),
+    rowno:new FormControl(null),
     authenticationtoken:new FormControl(null)
   
   });
@@ -36,7 +37,8 @@ export class BrandAddComponent implements OnInit {
         this.brands.patchValue({
           makename: data?.makename,
           discountpercentage: data?.discountpercentage,
-          makeno : data?.makeno
+          makeno : data?.makeno,
+          rowno:data?.rowno
         });
         this.brands.value.makeno = data;
         this.loader.stop();

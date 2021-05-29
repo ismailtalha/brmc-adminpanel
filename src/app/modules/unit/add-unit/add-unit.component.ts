@@ -21,6 +21,7 @@ export class AddUnitComponent implements OnInit {
     unitname: new FormControl(null, Validators.required),
     unitdescription: new FormControl(null),
     unitno:new FormControl(null),
+    rowno:new FormControl(null),
     authenticationtoken:new FormControl(null)
   
   });
@@ -37,7 +38,8 @@ export class AddUnitComponent implements OnInit {
         this.units.patchValue({
           unitname: data?.unitname,
           unitdescription: data?.unitdescription,
-          unitno: data?.unitno
+          unitno: data?.unitno,
+          rowno:data?.rowno
         });
         this.loader.stop();
       },(err)=>{

@@ -33,6 +33,7 @@ export class CompanyInfoComponent implements OnInit {
       ourworks: new FormControl(null),
       ourexperience: new FormControl(null),
       logo:new FormControl(null),
+      rowno:new FormControl(null),
       authenticationtoken:new FormControl(null)
       
     });

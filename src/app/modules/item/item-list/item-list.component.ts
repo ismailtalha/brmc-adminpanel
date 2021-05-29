@@ -38,6 +38,9 @@ export class ItemListComponent implements OnInit {
       { field: 'makename', header: 'Brand' },
       { field: 'saleprice', header: 'Sale Price' },
       { field: 'costprice', header: 'Cost Price' },
+      { field: 'baseunitname', header: 'Base Unit' },
+      { field: 'itemstock', header: 'Opening Stock' },
+      { field: 'itemstockportaldisplay', header: 'Current Stock' },
       // { field: 'itemdetails', header: 'Description' }
     ],
     first: 0,

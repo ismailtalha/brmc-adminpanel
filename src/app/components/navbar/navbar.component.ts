@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
 import { DataService } from 'src/app/services/data.service';
 import { ConnectionService } from 'ng-connection-service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -19,7 +19,9 @@ export class NavbarComponent implements OnInit {
   userName = (localStorage.getItem('userName')) ? localStorage.getItem('userName').toUpperCase() : 'Admin';
   isConnected: boolean;
   noInternetConnection: boolean;
-  constructor(location: Location,  private element: ElementRef, private router: Router, private cookies: CookieService, private dataService: DataService) {
+  constructor(location: Location,  private element: ElementRef, private router: Router, private cookies: CookieService, private dataService: DataService,
+    private toastr: ToastrService
+    ) {
     this.location = location;
   }
 
@@ -41,9 +43,29 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.cookies.deleteAll();
-    localStorage.clear();
-    this.router.navigate(['auth']);
+
+      debugger
+      this.dataService.logout(this.userName).subscribe((res: any) =>{
+        if(res?.errorrstatusno == 1) {
+         // this.cookies.set('token', res?.token);
+        this.cookies.deleteAll();
+        localStorage.clear();
+        this.router.navigate(['auth']);
+          
+          this.toastr.success('Logout Successfully', 'Success');
+        } else {
+          this.toastr.error(res?.errortext, "Error");
+          //show some error from errotext from api
+          
+        }
+      }, (err) =>{
+          this.toastr.error(err.Message, "Error");
+
+          
+      }); 
+    
+
+    
   }
 
 

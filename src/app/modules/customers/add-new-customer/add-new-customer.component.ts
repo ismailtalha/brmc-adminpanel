@@ -17,12 +17,15 @@ export class AddNewCustomerComponent implements OnInit {
     email: new FormControl(null, Validators.email),
     contact: new FormControl(null),
     address: new FormControl(null),
+    contactperson: new FormControl(null),
+    mobileno: new FormControl(null),
     custtype: new FormControl(null) ,
     web: new FormControl(null),
     fax: new FormControl(null),
     block: new FormControl(null),
     ntnno: new FormControl(null) ,
     strnno: new FormControl(null),
+    rowno:new FormControl(null),
     authenticationtoken:new FormControl(null)
   });
   edit: any;
@@ -66,7 +69,7 @@ export class AddNewCustomerComponent implements OnInit {
           if(res.errorstatusno == 1)
           {
             this.router.navigate(['customers']);
-            this.toastr.success('Customers Updated Successfully');
+            this.toastr.success('Customer Updated Successfully');
           }
          else
          {
@@ -85,7 +88,7 @@ export class AddNewCustomerComponent implements OnInit {
             console.log(res);
             this.loader.stop();
             this.router.navigate(['customers']);
-            this.toastr.success('New Customers Added Successfully');
+            this.toastr.success('New Customer Added Successfully');
           },(err)=>{
             this.toastr.error(err, "Error");
           console.log(err);

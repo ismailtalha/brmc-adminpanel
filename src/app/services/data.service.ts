@@ -15,6 +15,9 @@ export class DataService {
   login(data) {
     return this.http.post(url + '/user/login', data);
   }
+  logout(data) {
+    return this.http.post(url + '/cobuserhdr/postlogout', data);
+  }
   getsingleuser(id)
   {
     return this.http.get(url +`cobuserhdr/get?no=${id}&authenticationtoken=${this.authtoken}`);
