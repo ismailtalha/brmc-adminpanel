@@ -45,24 +45,34 @@ export class NavbarComponent implements OnInit {
   logout() {
 
       debugger
-      this.dataService.logout(this.userName).subscribe((res: any) =>{
-        if(res?.errorrstatusno == 1) {
-         // this.cookies.set('token', res?.token);
-        this.cookies.deleteAll();
-        localStorage.clear();
-        this.router.navigate(['auth']);
-          
-          this.toastr.success('Logout Successfully', 'Success');
-        } else {
-          this.toastr.error(res?.errortext, "Error");
-          //show some error from errotext from api
-          
-        }
-      }, (err) =>{
-          this.toastr.error(err.Message, "Error");
 
-          
-      }); 
+      let userNo = localStorage.getItem('userName');
+      if(userNo == null)
+      {
+        this.toastr.error('It seems as your session has expired, you need to login again');
+        this.router.navigate(['auth']);
+      }
+    let data = {"userno": userNo};
+    this.dataService.logout(data).subscribe((data:any)=>{
+      debugger
+      if(data.errorstatusno == "1")
+      {
+        this.cookies.deleteAll();
+        localStorage.clear();        
+        this.router.navigate(['auth']);
+      this.toastr.success("Successfully Logout");
+      }
+      else
+{
+  this.toastr.error(data.errotext);
+  
+
+}
+    })
+
+    // this.cookies.deleteAll();
+    // localStorage.clear();
+    // this.router.navigate(['auth']);
     
 
     
