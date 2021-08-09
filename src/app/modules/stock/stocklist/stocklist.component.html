@@ -1,0 +1,163 @@
+<div class="header pb-5 pt-5 pt-lg-8 d-flex align-items-center">
+    <span class="mask bg-gradient-primary opacity-8"></span>
+  </div>
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-xl-12 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">Items</h3>
+              </div>
+              <div class="col-4 text-right">
+                <button (click)="bulkupdate()" class="btn btn-primary btn-primary">Update</button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive table align-items-center table-flush">
+            <p-table #item [columns]="Record.cols" [value]="Record.data" [(selection)]="selectedRows" [paginator]="true" [rows]="10" dataKey="itemno" sortMode="multiple" [paginator]="false"
+            [showCurrentPageReport]="false" editMode="row">
+            <ng-template pTemplate="caption" >
+              <div style="text-align: right">        
+                  <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                  <input type="text" pInputText size="50" placeholder="Global Filter" (input)="item.filterGlobal($event.target.value, 'contains')" style="width:auto">
+              </div>
+          </ng-template>
+               <ng-template pTemplate="header" let-columns>
+                   <tr>
+                    <!-- <th>
+                        <p-checkbox (click)="selectRow(e.checked)" #e></p-checkbox>
+                      </th> -->
+                      <th style="width: 3rem">
+                      </th>
+                       <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                           {{col.header}}
+                       </th>
+                       <!-- <th>Action</th> -->
+                   </tr>
+               </ng-template>
+
+               <ng-template pTemplate="body" let-rowData let-columns="columns" let-row="rowData" let-expanded="expanded" >
+
+                   <tr [pSelectableRow]="rowData">
+                    <!-- <td>
+                        <p-tableCheckbox [value]="rowData" *ngIf = "rowData.itemunitsdetails.length == 0" [disabled]="rowData.quantity == 0 || rowData.quantity == null" (click)="selectRow(e)" #e>
+                    </p-tableCheckbox>
+            
+                  </td> -->
+                      <td>
+                          <a href="javascript:void(0)" [pRowToggler]="rowData">
+                              <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+                              </i>
+                          </a>
+                      </td>
+                       <td style="text-align:center" *ngFor="let col of columns">
+                         
+                           
+                             <!-- <span *ngIf="!col.data">   {{rowData[col.field] }}</span> -->
+                             {{rowData[col.field] }}
+                             <!-- <span *ngIf="col.data && rowData.itemunitsdetails.length == 0"> <input type="text" OnlyNumber="true"  [(ngModel)]="rowData[col.field]"></span> -->
+                            
+                        </td>
+                       
+                       <!-- <td style="text-align: center; cursor: pointer;">
+                        <i class="pi pi-pencil pr-1" (click)="onEdit(rowData)"></i>
+                        <i class="pi pi-trash pl-1" (click)="onDelete(rowData)"></i>
+                       </td> -->
+                   </tr>
+               </ng-template>
+
+               <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+                <tr >
+                    <td [attr.colspan]="columns.length + 1">
+                        <div class="p-grid ui-fluid" style="font-size:16px;padding:20px" [@rowExpansionTrigger]="'active'">
+                            <div class="p-col-12">
+                                <div class="p-grid">
+                                    <div class="p-col-12">
+                                      <h3>Item Units</h3>
+                                      <div class="table">
+                                        <thead>
+                                          <tr>
+                                            <th>
+                                          </th>
+                                            <th>
+                                                baseunit
+                                            </th>
+                                            <th>
+                                                factorunitname
+                                            </th>
+                                            <th>
+                                                saleprice
+                                            </th>
+                                            <th>
+                                                costprice
+                                            </th>
+                                            <th>
+                                              Opening Stock
+                                          </th>
+                                          <th>
+                                            Current Stock
+                                        </th>
+                                            <th>
+                                              quantity
+                                          </th>
+                                            <!-- <th>
+                                              Description
+                                            </th> -->
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr *ngFor="let row of rowData.itemunitsdetails">
+
+                                            <td>
+                                              <input type="checkbox" [disabled]="row.quantity == 0 || row.quantity == null  " (change)="checked(row)">
+                                            </td>
+                                              <td>
+                                                {{(row?.factorunit) ? row?.factorunit : '-'}}
+                                              </td>
+                                              <td>
+                                                {{(row?.factorunitname) ? row?.factorunitname : '-'}}
+                                              </td>
+                                              <td>
+                                                {{(row.dsaleprice) ? row.dsaleprice : '-'}}
+                                              </td>
+                                            <td>
+                                              {{(row?.dcostprice) ? row?.dcostprice : '-'}}
+                                            </td>
+                                            <td>
+                                              {{(row?.itemunitstock) ? row?.itemunitstock : '-'}}
+                                            </td>
+                                            <td>
+                                              {{(row?.itemunitstockportaldisplay) ? row?.itemunitstockportaldisplay : '-'}}
+                                            </td>
+                                            <td>
+                                              <input type="text" OnlyNumber="true" [(ngModel)]="row.quantity">
+                                              <!-- <span *ngIf="col.data"> <input type="number" [(ngModel)]="rowData[col.field]"></span> -->
+                                            </td>
+                                            <!-- <td>
+                                              {{(row?.ltxt) ? row?.ltxt : '-'}}
+                                            </td> -->
+                                            </tr>
+                                        </tbody>
+
+
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+
+            
+            </p-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

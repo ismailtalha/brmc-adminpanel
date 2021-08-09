@@ -352,5 +352,13 @@ export class DataService {
   {
     return this.http.post(url + "sldsaleorderhdr/post" , data);
   }
+  getallpaymnets()
+  {
+    return this.http.get(url + `/fipaymenttransfer/get?authenticationtoken=${this.authtoken}`);
+  }
+  updatebulkdata(data)
+  {
+    return this.http.post(url + `iteminfo/PostUpdate`,data);
+  }
   
 }

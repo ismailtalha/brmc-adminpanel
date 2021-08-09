@@ -69,7 +69,11 @@ const routes: Routes =[
       },
       {
         path: 'paymenttransaction',
-        loadChildren: './modules/brand/brand.module#BrandModule', canActivate:[AuthGuardService]
+        loadChildren: './modules/paymenttransaction/paymenttransaction.module#PaymenttransactionModule', canActivate:[AuthGuardService]
+      },
+      {
+        path: 'stock',
+        loadChildren: './modules/stock/stock.module#StockModule', canActivate:[AuthGuardService]
       },
      
     ]

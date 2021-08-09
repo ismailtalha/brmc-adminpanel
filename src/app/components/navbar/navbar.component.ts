@@ -6,6 +6,7 @@ import {CookieService} from 'ngx-cookie-service';
 import { DataService } from 'src/app/services/data.service';
 import { ConnectionService } from 'ng-connection-service';
 import { ToastrService } from 'ngx-toastr';
+import { GetDataService } from 'src/app/services/getdata.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

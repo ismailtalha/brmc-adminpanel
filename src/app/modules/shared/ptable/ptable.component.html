@@ -15,7 +15,7 @@
                 <!-- <p-sortIcon [field]="col.field"></p-sortIcon> -->
             </th>
             <th *ngIf="Records.screen == 'order'">Status</th>
-            <th>Action</th>
+            <th >Action</th>
             <!-- </tr>
                  
                   <tr>
@@ -54,7 +54,7 @@
         <tr>
             <td style="text-align:center" *ngFor="let col of columns">
 
-                <span> {{rowData[col.field]}}</span>
+                <span> {{col.data ? (rowData[col.field] | date : col.format) :  rowData[col.field]}}</span>
             </td>
             <td *ngIf="Records.screen == 'order'">
                 <span>

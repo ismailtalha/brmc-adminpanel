@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { DataService } from 'src/app/services/data.service';
+import { GetDataService } from 'src/app/services/getdata.service';
 
 declare interface RouteInfo {
   path: string;
@@ -33,8 +34,9 @@ export class SidebarComponent implements OnInit {
 
   public menuItems: any[];
   public isCollapsed = true;
+  logo: any;
 
-  constructor(private router: Router, private cookies: CookieService, private dataService: DataService) {
+  constructor(private router: Router, private cookies: CookieService, private dataService: DataService,public getdata : GetDataService) {
     
   }
 
@@ -60,6 +62,8 @@ export class SidebarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
     });
+    let company = JSON.parse(localStorage.getItem('company')) 
+    this.getdata.companydata = company;
   }
 
   logout() {

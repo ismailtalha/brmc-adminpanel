@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DataService } from 'src/app/services/data.service';
 import { ToastrService } from 'ngx-toastr';
+import { GetDataService } from 'src/app/services/getdata.service';
 @Component({
   selector: 'app-company-info',
   templateUrl: './company-info.component.html',
@@ -17,7 +18,7 @@ export class CompanyInfoComponent implements OnInit {
   constructor(private dataService: DataService, private loader: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService , public getdata:GetDataService) { }
 
     company = new FormGroup({
       companyno: new FormControl(null),
@@ -47,6 +48,8 @@ export class CompanyInfoComponent implements OnInit {
         reader.onload = (event) => { // called once readAsDataURL is completed
           this.url = event.target.result;
           this.company.value.logo = this.url;
+          this.company.value.logo = 'data:image/jpg;base64,' + this.company.value.logo;
+          this.getdata.companydata = this.company.value;
           console.log('object',this.company.value.logo)
         }
       }
