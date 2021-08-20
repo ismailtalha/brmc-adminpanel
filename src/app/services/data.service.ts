@@ -20,6 +20,7 @@ export class DataService {
   }
   getsingleuser(id)
   {
+    debugger;
     return this.http.get(url +`cobuserhdr/get?no=${id}&authenticationtoken=${this.authtoken}`);
   }
   getsinglecustomer(id)

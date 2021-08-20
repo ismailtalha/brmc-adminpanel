@@ -51,26 +51,28 @@ baseunits:any=[];
     productno: new FormControl(null),
     productname:new FormControl(null, Validators.required),
     itemgroupno: new FormControl(null),
-    itemgroupname:new FormControl(null, Validators.required),
+    itemgroupname:new FormControl(null),
     makeno:new FormControl(null),
     makename:new FormControl(null, Validators.required),
     saleprice:new FormControl(null, Validators.required),
     costprice:new FormControl(null, Validators.required),
     itemname:new FormControl(null, Validators.required),
     itembarcode:new FormControl(null),
-    reorderlevel:new FormControl(null),
+    reorderlevelquantity:new FormControl(null),
     baseunitno:new FormControl(null),
     baseunitname:new FormControl(null),
     itemstock:new FormControl(null),
     discountpercentage:new FormControl(null),
     isfeatured:new FormControl(null),
     isnewarrival:new FormControl(null),
+    isclearance:new FormControl(null),
     blockitem:new FormControl(null),
     itemdetails:new FormControl(null),
     itemunitsdetails:new FormControl(null),
     itemno: new FormControl(null),
     rowno:new FormControl(null),
     itemimagelogo:new FormControl(null),
+    itemimagepath:new FormControl(null),
     authenticationtoken:new FormControl(null),
     createdate:new FormControl()
   
@@ -120,7 +122,7 @@ baseunits:any=[];
   }
 
   onEdit(value) {
-    
+    debugger;
     this.unitdetail.patchValue({
       factorunit: value.factorunit,
       factorunitname:value.factorunitname,

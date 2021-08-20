@@ -78,7 +78,7 @@
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-username">Group*</label>
+                          <label class="form-control-label" for="input-username">Group</label>
                             <!-- <select formControlName="itemgroupno"  class="form-control form-control-alternative">
                                 <option [ngValue]="null" disabled>Select Group</option>
                                 <option *ngFor="let a of itemgroups" [value]="a?.id">{{a?.itemgroupname}}</option>
@@ -141,7 +141,7 @@
 
                       <div class="col-lg-3">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-username">Base Unit</label>
+                            <label class="form-control-label" for="input-username">Base Unit*</label>
                             
                             <!-- <ng-select [items]="units"
                             (change)="onBaseUnitChange($event)"
@@ -190,8 +190,8 @@
                       </div>
                       <div class="col-lg-3">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-username">Recorder Level</label>
-                            <input formControlName="reorderlevel" class="form-control form-control-alternative"  type="text">
+                            <label class="form-control-label" for="input-username">Re-Order Level</label>
+                            <input formControlName="reorderlevelquantity" class="form-control form-control-alternative"  type="text">
                         </div>
                     </div> 
                   
@@ -223,6 +223,12 @@
                                 <label for="isnewarrival" class="form-check-label">New Arrival</label>
                             </div>
                         </div>
+                        <div class="col-lg-2">
+                          <div class="form-group form-check">
+                              <input type="checkbox"  formControlName="isclearance" id="isclearance" class="form-check-input"  />
+                              <label for="isclearance" class="form-check-label">Clearance</label>
+                          </div>
+                      </div>                        
                         <div class="col-lg-2">
                             <div class="form-group form-check">
                                 <input type="checkbox"  formControlName="blockitem" id="blockitem" class="form-check-input"  />
