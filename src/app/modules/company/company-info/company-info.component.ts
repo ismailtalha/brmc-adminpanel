@@ -47,8 +47,9 @@ export class CompanyInfoComponent implements OnInit {
         
         reader.onload = (event) => { // called once readAsDataURL is completed
           this.url = event.target.result;
+          debugger;
           this.company.value.logo = this.url;
-          this.company.value.logo = 'data:image/jpg;base64,' + this.company.value.logo;
+          //this.company.value.logo = 'data:image/jpg;base64,' + this.company.value.logo;
           this.getdata.companydata = this.company.value;
           console.log('object',this.company.value.logo)
         }
@@ -64,7 +65,8 @@ export class CompanyInfoComponent implements OnInit {
         debugger
         var data = res[0];
 
-         this.url = 'data:image/jpg;base64,'+ data.logo;
+         //this.url = 'data:image/jpg;base64,'+ data.logo;
+         this.url = 'data:image/jpeg;base64,'+ data.logo;
          this.company.patchValue(data);
          this.loader.stop();
        
@@ -81,8 +83,10 @@ export class CompanyInfoComponent implements OnInit {
     if(this.company.valid) {
       this.company.value.authenticationtoken = localStorage.getItem('authtoken')
       this.loader.start();
-
-      this.company.value.logo = this.company.value.logo.replace('data:image/jpeg;base64,',"");
+debugger;
+      //this.company.value.logo = this.company.value.logo.replace('data:image/jpeg;base64,',"");
+        var replacestring = this.company.value.logo.toString().substring(0,this.company.value.logo.indexOf("base64,"));        
+        this.company.value.logo = this.company.value.logo.replace(replacestring+'base64,',"");
         this.dataService.UpdateCompany(this.company.value).subscribe((res:any)=>{
           this.loader.stop();
           if(res.errorstatusno == 1)

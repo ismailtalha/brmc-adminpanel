@@ -35,7 +35,9 @@ baseunits:any=[];
         let data = res;
         
         this.itemform.patchValue(data);
-        this.url = 'data:image/jpeg;base64,'+data.itemimagelogo;
+        if(data.itemimagelogo.toString() !="")
+          this.url = 'data:image/jpeg;base64,'+data.itemimagelogo;
+        //this.url = 'data:image/png;base64,'+data.itemimagelogo; //>>>>DO HAROON BUT COMMENTED AGAIN
         this.unitdetail.patchValue(data.itemunitsdetails)
         this.unitdetails = data.itemunitsdetails;
         this.loader.stop();
@@ -243,7 +245,10 @@ baseunits:any=[];
       reader.onload = (event) => { // called once readAsDataURL is completed
         debugger
         this.url = event.target.result;
-        this.itemform.patchValue({itemimagelogo : this.url.toString().replace('data:image/jpeg;base64,',"")})
+        
+        //this.itemform.patchValue({itemimagelogo : this.url.toString().replace('data:image/jpeg;base64,',"")})
+        var replacestring = this.url.toString().substring(0,this.url.toString().indexOf("base64,"));
+        this.itemform.patchValue({itemimagelogo : this.url.toString().replace(replacestring+'base64,',"")})
       }
     }
   }

@@ -260,6 +260,7 @@ export class DataService {
   }
   addoreditItemGroup(data)
   {
+    debugger;
     return this.http.post(url + `/itemgroupinfo/post` , data);
   }
   getItemGroupById(id)
@@ -298,6 +299,7 @@ export class DataService {
   }
   addoreditItem(data)
   {
+    debugger;
     return this.http.post(url + `/iteminfo/post` , data);
   }
   getItemById(id)
