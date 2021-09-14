@@ -8,9 +8,15 @@ const url = environment.url;
   providedIn: 'root'
 })
 export class DataService {
-   authtoken = localStorage.getItem('authtoken');
+   
   constructor(private http: HttpClient) { }
 
+  authtoken:any;
+  gettoken()
+  {
+    this.authtoken = '';
+     this.authtoken =  localStorage.getItem('authtoken');
+  }
   
   login(data) {
     return this.http.post(url + '/user/login', data);
@@ -21,6 +27,7 @@ export class DataService {
   getsingleuser(id)
   {
     debugger;
+    this.gettoken()
     return this.http.get(url +`cobuserhdr/get?no=${id}&authenticationtoken=${this.authtoken}`);
   }
   getsinglecustomer(id)
@@ -28,6 +35,7 @@ export class DataService {
     return this.http.get(url +`custinfo/get?no=${id}`);
   }
   getUsers() {
+    this.gettoken()
     return this.http.get(url + `/cobuserhdr/get?authenticationtoken=${this.authtoken}`);
   }
 
@@ -48,10 +56,12 @@ export class DataService {
   }
 
   getCustomers() {
+    this.gettoken()
     return this.http.get(url + `/custinfo/get?authenticationtoken=${this.authtoken}`);
   }
 
   getCustomerById(id) {
+    this.gettoken()
     return this.http.get(url + `/customer/${id}?authenticationtoken=${this.authtoken}`);
   }
 
@@ -319,6 +329,7 @@ export class DataService {
   }
   getOrders()
   {
+    this.gettoken()
     return this.http.get(url + `/sldsaleorderhdr/get?authenticationtoken=${this.authtoken}`);
   }
   getCompany()
@@ -331,6 +342,7 @@ export class DataService {
   }
   getOrderById(id)
   {
+    this.gettoken()
     return this.http.get(url + `/sldsaleorderhdr/get?no=${id}&authenticationtoken=${this.authtoken}`);
   }
   updateOrder(data)
@@ -343,10 +355,12 @@ export class DataService {
   }
   getallcustomer(data)
   {
+    this.gettoken()
     return this.http.get(url + `/custinfo/get?authenticationtoken=${this.authtoken}`);
   }
   getcustomerById(id)
   {
+    this.gettoken()
     return this.http.get(url + `/custinfo/get?no=${id}&authenticationtoken=${this.authtoken}`);
   }
   createorder(data)
@@ -355,6 +369,7 @@ export class DataService {
   }
   getallpaymnets()
   {
+    this.gettoken()
     return this.http.get(url + `/fipaymenttransfer/get?authenticationtoken=${this.authtoken}`);
   }
   updatebulkdata(data)

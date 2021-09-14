@@ -1,4 +1,5 @@
 export class company
 {
-    data:any = []    ;
+    data:any = [];
+    logo:any;
 }

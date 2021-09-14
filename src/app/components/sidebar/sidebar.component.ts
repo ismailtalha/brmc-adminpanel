@@ -34,7 +34,6 @@ export class SidebarComponent implements OnInit {
 
   public menuItems: any[];
   public isCollapsed = true;
-  logo: any;
 
   constructor(private router: Router, private cookies: CookieService, private dataService: DataService,public getdata : GetDataService) {
     
